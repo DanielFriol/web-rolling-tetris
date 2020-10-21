@@ -1,0 +1,115 @@
+/*Títulos*/
+
+h1 {
+  text-align: center;
+}
+
+/*Formatação dos Formulários, e dos campos Input (Index, Cadastro, Configurações)*/
+
+input {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.forms {
+  text-align: center;
+}
+
+/*Index*/
+
+.principal {
+  width: auto;
+  height: 840px;
+  padding: 25px;
+  background: url("inicial.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.campos {
+  margin-top: 375px;
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
+/*Cadastro do Usuário*/
+
+.principalcad {
+  width: auto;
+  height: 840px;
+  padding: 25px;
+  background: url("entrada.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+/*Formatação das Tabelas (Ranking Pessoal, Placar Pessoal, Ranking Global)*/
+
+table {
+  border: 1px solid black;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+td {
+  text-align: center;
+}
+
+/*Jogo*/
+
+div.principalgame {
+  width: auto;
+  height: auto;
+  background: url("wallpapergame_2.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img.ft {
+  padding: 15px;
+  width: 200px;
+  height: 65px;
+}
+
+img.unicamp {
+  padding: 15px;
+  width: 100px;
+  height: 83px;
+  float: right;
+}
+
+#img_tetris {
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #1ba1b7;
+}
+
+.opcoes {
+  text-align: center;
+  padding: 2px;
+}
+
+/*Configurações das Informações*/
+
+.principalconf {
+  background: url("wallpapergame_2.jpeg");
+  width: auto;
+  height: 870px;
+}
+
+/*Ranking*/
+
+div.principalranking {
+  width: auto;
+  height: 870px;
+  background: url("wallpapergame_2.jpeg");
+}
