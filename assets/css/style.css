@@ -22,7 +22,7 @@ input {
   width: auto;
   height: 840px;
   padding: 25px;
-  background: url("inicial.png");
+  background: url("../images/inicial.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -40,7 +40,7 @@ input {
   width: auto;
   height: 840px;
   padding: 25px;
-  background: url("entrada.jpg");
+  background: url("../images/entrada.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -62,15 +62,6 @@ td {
 
 /*Jogo*/
 
-div.principalgame {
-  width: auto;
-  height: auto;
-  background: url("wallpapergame_2.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 img.ft {
   padding: 15px;
   width: 200px;
@@ -84,24 +75,13 @@ img.unicamp {
   float: right;
 }
 
-#img_tetris {
-  width: 50%;
-  height: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid #1ba1b7;
-}
-
-.opcoes {
-  text-align: center;
-  padding: 2px;
-}
-
 /*Configurações das Informações*/
 
 .principalconf {
-  background: url("wallpapergame_2.jpeg");
+  background: url("../images/wallpapergame_2.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: auto;
   height: 870px;
 }
@@ -111,5 +91,8 @@ img.unicamp {
 div.principalranking {
   width: auto;
   height: 870px;
-  background: url("wallpapergame_2.jpeg");
+  background: url("../images/wallpapergame_2.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
