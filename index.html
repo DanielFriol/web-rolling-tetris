@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+<head>
+  <meta charset="utf-8" />
 
-    <title>Primeira Página</title>
-  </head>
+  <link rel="stylesheet" href="assets/css/index.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 
-  <body>
-    <div class="principal">
-      <div class="campos">
-        <h1>Guilherme Palermo</h1>
+  <title>Primeira Página</title>
+</head>
 
-        <form action="Jogo.html" class="forms">
-          <label>Usuário:</label>
-          <input type="text" id="usuário" /> <br />
+<body>
+  <div class="principal">
+    <h1>Entre para Jogar</h1>
 
-          <label>Senha:</label>
-          <input type="password" id="senha" /> <br />
+    <form action="Jogo.html" class="forms">
+      <div class="justify-content-left">
+        <label>Usuário:</label>
+        <input type="text" id="usuário" class="ml-1" /> <br>
 
-          <input type="submit" value="Enviar os Dados" />
-
-          <p>
-            Não possui cadastro? <a href="Cadastro.html"> Crie sua conta</a>
-          </p>
-        </form>
+        <label>Senha:</label>
+        <input type="password" id="senha" class="mt-2 ml-1" /> <br>
       </div>
-    </div>
-  </body>
+
+      <button type="submit" class="mt-2">Entrar</button>
+
+      <p>
+        Não possui cadastro? <a href="Cadastro.html"> Cadastre-se</a>!
+      </p>
+    </form>
+  </div>
+</body>
+
 </html>

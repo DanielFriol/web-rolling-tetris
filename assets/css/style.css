@@ -20,7 +20,7 @@ input {
 
 .principal {
   width: auto;
-  height: 840px;
+  height: 100vh;
   padding: 25px;
   background: url("../images/inicial.png");
   background-position: center;
