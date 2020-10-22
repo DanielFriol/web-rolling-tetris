@@ -1,0 +1,44 @@
+.principalranking {
+  width: 100vw;
+  height: 100vh;
+  background: url("../images/ranking.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: none;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  color: white;
+}
+.center {
+  display: grid;
+  grid-template-columns: 0.6fr 2.6fr 0.6fr;
+  grid-template-rows: 0.3fr 2.3fr 0.4fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". title ."
+    ". ranking ."
+    ". menu .";
+}
+.title {
+  grid-area: title;
+}
+.ranking {
+  grid-area: ranking;
+}
+.menu {
+  grid-area: menu;
+}
+
+table {
+  border: 1px solid white;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border-spacing: 0 1em;
+  margin-bottom: 3rem;
+}
+caption {
+  margin-bottom: 2rem;
+}

@@ -86,13 +86,15 @@ img.unicamp {
   height: 870px;
 }
 
-/*Ranking*/
 
-div.principalranking {
-  width: auto;
-  height: 870px;
-  background: url("../images/wallpapergame_2.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+/* geral */
+
+.opcoes {
+  text-align: center;
+}
+
+.opcoes > a {
+  color: #cccccc;
+  margin-right: 2rem;
 }
