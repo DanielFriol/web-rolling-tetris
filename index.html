@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
-  <meta charset="utf-8" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-  <link rel="stylesheet" href="assets/css/index.css" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Primeira Página</title>
+  </head>
 
-  <title>Primeira Página</title>
-</head>
+  <body>
+    <div class="principal">
+      <h1>Entre para Jogar</h1>
+      <div class="forms">
+        <form action="Jogo.html">
+          <table>
+            <tbody>
+              <tr>
+                <td><label>Usuário:</label></td>
+                <td><input type="text" id="usuário" class="ml-1" /></td>
+              </tr>
 
-<body>
-  <div class="principal">
-    <h1>Entre para Jogar</h1>
+              <tr>
+                <td><label>Senha:</label></td>
+                <td>
+                  <input type="password" id="senha" class="mt-2 ml-1" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-    <form action="Jogo.html" class="forms">
-      <div class="justify-content-left">
-        <label>Usuário:</label>
-        <input type="text" id="usuário" class="ml-1" /> <br>
+          <button type="submit" class="mt-2">Entrar</button>
 
-        <label>Senha:</label>
-        <input type="password" id="senha" class="mt-2 ml-1" /> <br>
+          <p>Não possui cadastro? <a href="Cadastro.html"> Cadastre-se</a>!</p>
+        </form>
       </div>
-
-      <button type="submit" class="mt-2">Entrar</button>
-
-      <p>
-        Não possui cadastro? <a href="Cadastro.html"> Cadastre-se</a>!
-      </p>
-    </form>
-  </div>
-</body>
-
+    </div>
+  </body>
 </html>
