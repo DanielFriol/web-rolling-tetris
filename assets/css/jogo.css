@@ -50,12 +50,13 @@
   background-size: cover;
 }
 
-#img_tetris {
+#tetris {
   width: 95%;
+  height: 550px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid #160e09;
+  border: 1px solid white;
 }
 
 .table-top,
