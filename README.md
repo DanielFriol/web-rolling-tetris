@@ -1,3 +1,3 @@
 ﻿# web-rolling-tetris
 
-## Usar a extenxão prettier no vscode
+## Usar a extensão prettier no vscode
