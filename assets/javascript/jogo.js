@@ -2,8 +2,43 @@ var playing = false;
 var width;
 var height;
 var matrix;
-var moveX;
-var moveY;
+var pieces = [
+                [
+                    [],
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [],
+                    []
+                ]
+            ];
 
 function play() {
     playing = true;
