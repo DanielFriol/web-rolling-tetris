@@ -12,18 +12,6 @@ function stop() {
     document.getElementById('stop').style.display = 'none';
 }
 
-function Escolhatab(escolha){
-    if (escolha == 0){
-      tabuleiro10();
-    }
-    else if (escolha == 1){
-      tabuleiro22();
-    }
-    else{
-      alert("Erro ao Escolher Tabuleiro !");
-    }
-}
-
 function Timer() {
 
 var segundos = 0;
