@@ -78,3 +78,63 @@
 img {
   margin-bottom: 0.75em;
 }
+
+button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  --bg-opacity: 1 !important;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+button:hover {
+  background-color: #2f855a;
+}
+
+.success {
+  background-color: #48bb78;
+}
+
+.success:hover {
+  background-color: #2f855a;
+}
+
+.danger {
+  background-color: #DC2626;
+}
+
+.danger:hover {
+  background-color: #991B1B;
+}
+
+.no-border {
+  border: 0;
+}
+
+.justify-content-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.center-margin {
+  margin-left: 49%;
+}
+
+#stop {
+  display: none;
+}
+
+.game-board {
+  border: solid 2px;
+}

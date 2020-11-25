@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/jogo.css" />
+<head>
+  <meta charset="utf-8" />
 
-    <title>O Jogo</title>
-  </head>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/jogo.css" />
 
-  <body>
-    <div class="wrapper">
-      <div class="parent">
-        <div class="div1">
-          <img src="assets/images/logo_ft.png" alt="logo ft" class="ft" />
-        </div>
-        <div class="div2">
-          <div class="center">
-            <h1>Rolling Tetris</h1>
+  <script type="text/javascript" src="assets/javascript/jogo.js"></script>
 
-            <table class="table-top">
-              <tr>
-                <th>Tempo da partida</th>
-                <th>Pontuação</th>
-                <th>Número de linhas eliminadas</th>
-                <th>Nível de dificuldade</th>
-              </tr>
+  <title>O Jogo</title>
+</head>
 
-              <tr>
-                <td>00:17:28</td>
-                <td>103 Pontos</td>
-                <td>88 Linhas</td>
-                <td>Médio</td>
-              </tr>
-            </table>
+<body>
+  <div class="wrapper">
+    <div class="parent">
+      <div class="div1">
+        <img src="assets/images/logo_ft.png" alt="logo ft" class="ft" />
+      </div>
+      <div class="div2">
+        <div class="center">
 
-           <div id = "tetris" onload="Escolhatab()">
+          <h1>Rolling Tetris</h1>
+          <button id="play" class="center-margin success" type="button" onclick="play()">Play</button>
+          <button id="stop" class="center-margin danger" type="button" onclick="stop()">Stop</button>
 
-             <!--O Jogo estará aqui -->
+          <table class="table-top mt-2">
+            <tr>
+              <th>Tempo da partida</th>
+              <th>Pontuação</th>
+              <th>Número de linhas eliminadas</th>
+              <th>Nível de dificuldade</th>
+            </tr>
 
-           </div> <br />
+            <tr>
+              <td>00:17:28</td>
+              <td>103 Pontos</td>
+              <td>88 Linhas</td>
+              <td>Médio</td>
+            </tr>
+          </table>
 
-           <div class = "scrollrank">
+          
+          <div id="tetris">
+          </div> 
+          <br>
+
+          <div class="scrollrank">
             <table class="ranking">
-                <caption>
-                  <b> Ranking: </b>
-                </caption>
+              <caption>
+                <b> Ranking: </b>
+              </caption>
               <tr>
                 <th>Nome do Jogador</th>
                 <th>Pontuação obtida</th>
@@ -79,28 +84,22 @@
                 <td>00:00:45</td>
               </tr>
             </table>
-           </div> <br/>
+          </div> <br />
 
-            <div class="opcoes">
-              <a href="ranking.html">Ranking Global</a>
+          <div class="opcoes">
+            <a href="ranking.html">Ranking Global</a>
 
-              <a href="configuracoes.html">Editar perfil</a>
+            <a href="configuracoes.html">Editar perfil</a>
 
-              <a href="index.html">Logout</a>
-            </div>
+            <a href="index.html">Logout</a>
           </div>
         </div>
-        <div class="div3">
-          <img
-            src="assets/images/logo_unicamp.png"
-            alt="logo unicamp"
-            class="unicamp"
-          />
-        </div>
+      </div>
+      <div class="div3">
+        <img src="assets/images/logo_unicamp.png" alt="logo unicamp" class="unicamp" />
       </div>
     </div>
-    
-  <script src = "assets/javascript/javascript.js"></script>
+  </div>
+</body>
 
-  </body>
 </html>
