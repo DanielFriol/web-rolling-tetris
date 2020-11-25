@@ -53,10 +53,17 @@
 #tetris {
   width: 95%;
   height: 550px;
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid white;
+ align-items: center;
+}
+
+#s, #m{
+  display:inline; 
+  width: 16px; 
+  height: 15px;
 }
 
 .table-top,
