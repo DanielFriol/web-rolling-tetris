@@ -4,39 +4,40 @@ var height;
 var matrix;
 var pieces = [
     [
-        [],
-        [],
-        []
+        [0, 0, 0],
+        [1, 0, 1],
+        [1, 1, 1]
     ],
     [
-        [],
-        [],
-        []
+        [0, 0, 0],
+        [1, 1, 0],
+        [1, 1, 0]
     ],
     [
-        [],
-        [],
-        []
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0]
     ],
     [
-        [],
-        [],
-        []
+        [0, 0, 0],
+        [0, 1, 0],
+        [1, 1, 1]
     ],
     [
-        [],
-        [],
-        []
+        [0, 0, 1],
+        [0, 0, 1],
+        [0, 1, 1]
     ],
     [
-        [],
-        [],
-        []
+        [1, 0, 0],
+        [1, 0, 0],
+        [1, 1, 0]
     ],
     [
-        [],
-        [],
-        []
+        [0, 0, 0, 0],
+        [1, 1, 1, 1],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
     ]
 ];
 var timeInterval;
@@ -60,6 +61,8 @@ function play() {
     console.table(matrix);
 
     timer();
+
+    drawPiece();
 
     document.getElementById('play').style.display = 'none';
     document.getElementById('stop').style.display = 'initial';
@@ -97,4 +100,17 @@ function timer() {
         }
         document.getElementById("tempo").innerHTML = minutos + "m" + ":" + segundos + "s";
     }, 1000);
+}
+
+function drawPiece() {
+    var canvas = document.getElementById('game');
+    canvas.getContext('2d').fillStyle = 'blue';
+    var piece = pieces[0];
+    piece.forEach((x, y) => {
+        x.forEach((z, a) => {
+            if (z > 0) {
+                canvas.getContext('2d').fillRect(3 + z, 0 + y, 1, 1);
+            }
+        });
+    });
 }
