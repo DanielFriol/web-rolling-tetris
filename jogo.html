@@ -23,8 +23,12 @@
         <div class="center">
 
           <h1>Rolling Tetris</h1>
-          <button id="play" class="center-margin success" type="button" onclick="play()">Play</button>
-          <button id="stop" class="center-margin danger" type="button" onclick="stop()">Stop</button>
+          <select id="game-size">
+            <option value="10x20">10 x 20 (Largura x Altura)</option>
+            <option value="22x44">22 x 44 (Largura x Altura)</option>
+          </select>
+          <button id="play" class="center-margin success mt-1" type="button" onclick="play()">Play</button>
+          <button id="stop" class="center-margin danger mt-1" type="button" onclick="stop()">Stop</button>
 
           <table class="table-top mt-2">
             <tr>
@@ -44,6 +48,7 @@
 
           
           <div id="tetris">
+            <canvas id="game"></canvas>
           </div> 
           <br>
 

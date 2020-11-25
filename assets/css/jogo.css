@@ -52,11 +52,13 @@
 
 #tetris {
   width: 95%;
-  height: 550px;
+  /* height: 550px; */
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid white;
+  border: none;
+  justify-content: center;
+  text-align: center;
 }
 
 .table-top,
@@ -127,6 +129,10 @@ button:hover {
   margin-top: 1rem;
 }
 
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
 .center-margin {
   margin-left: 49%;
 }
@@ -137,4 +143,30 @@ button:hover {
 
 .game-board {
   border: solid 2px;
+}
+
+select {
+  display: block;
+  /* width: 25%; */
+  height: calc(1.75em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#game-size {
+  margin-left: 42%;
+}
+
+#game {
+  border: 1px solid;
+  width: 300px;
+  height: 600px;
 }
