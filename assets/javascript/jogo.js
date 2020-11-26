@@ -1,3 +1,4 @@
+
 var playing = false;
 var width;
 var height;
@@ -9,9 +10,10 @@ var pieces = [
         [1, 1, 1]
     ],
     [
-        [0, 0, 0],
-        [1, 1, 0],
-        [1, 1, 0]
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0]
     ],
     [
         [0, 0, 0],
@@ -40,6 +42,20 @@ var pieces = [
         [0, 0, 0, 0]
     ]
 ];
+
+
+const colors = [
+    'red',
+    'blue',
+    'green',
+    'yellow',
+    'grey',
+    'purple',
+    'brown'
+]
+
+const PS = 20;
+
 var timeInterval;
 
 function play() {
@@ -47,22 +63,40 @@ function play() {
 
     var size = document.getElementById('game-size').value;
     var sizeArr = size.split('x');
-    width = sizeArr[0];
-    height = sizeArr[1];
+    width = parseInt(sizeArr[0]);
+    height = parseInt(sizeArr[1]);
 
     var canvas = document.getElementById('game');
-    canvas.style.width = width * 30 + 'px';
-    canvas.style.height = height * 30 + 'px';
+    canvas.width = width * PS;
+    canvas.height = height * PS;
 
     var tetris = document.getElementById('tetris');
-    tetris.style.height = height * 30 + 'px';
+    tetris.style.height = height * PS;
 
     emptyMatrix();
     console.table(matrix);
 
+    var canvasContext = canvas.getContext("2d");
+
+    for (x = 0; x < height; x++) {
+        for (y = 0; y < width; y++) {
+            canvasContext.fillStyle = 'white';
+            canvasContext.fillRect(y * PS, x * PS, PS, PS);
+            canvasContext.fillStyle = 'black';
+            canvasContext.strokeRect(y * PS, x * PS, PS, PS);
+        }
+    }
+
     timer();
 
-    drawPiece();
+    var pieceRandom = Math.floor(Math.random() * 7);
+    var initialPosX;
+    if(width == 22)
+        initialPosX = 9;
+    else
+        initialPosX = 3;
+
+    drawPiece(pieces[pieceRandom], colors[pieceRandom], initialPosX, 0);
 
     document.getElementById('play').style.display = 'none';
     document.getElementById('stop').style.display = 'initial';
@@ -88,6 +122,7 @@ function emptyMatrix() {
         }
     }
 }
+
 function timer() {
     var segundos = 0;
     var minutos = 0;
@@ -102,15 +137,18 @@ function timer() {
     }, 1000);
 }
 
-function drawPiece() {
-    var canvas = document.getElementById('game');
-    canvas.getContext('2d').fillStyle = 'blue';
-    var piece = pieces[0];
-    piece.forEach((x, y) => {
-        x.forEach((z, a) => {
-            if (z > 0) {
-                canvas.getContext('2d').fillRect(3 + z, 0 + y, 1, 1);
+function drawPiece(piece, color, x, y) {
+    var canvas = document.getElementById("game");
+    var canvasContext = canvas.getContext("2d");
+
+    for (a = 0; a < piece.length; a++) {
+        for (b = 0; b < piece.length; b++) {
+            if (piece[b][a]) {
+                canvasContext.fillStyle = color;
+                canvasContext.fillRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
+                canvasContext.fillStyle = 'black';
+                canvasContext.strokeRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
             }
-        });
-    });
+        }
+    }
 }
