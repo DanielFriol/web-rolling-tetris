@@ -3,7 +3,7 @@ var playing = false;
 var width;
 var height;
 var matrix;
-var pieces = [
+const pieces = [
     [
         [0, 0, 0],
         [1, 0, 1],
@@ -54,9 +54,12 @@ const colors = [
     'brown'
 ]
 
+var CurrentPiece;
 const PS = 20;
-
+var pieceInterval;
 var timeInterval;
+var gameSpeed = 1000;
+
 
 function play() {
     playing = true;
@@ -90,16 +93,49 @@ function play() {
     timer();
 
     var pieceRandom = Math.floor(Math.random() * 7);
-    var initialPosX;
-    if(width == 22)
-        initialPosX = 9;
-    else
-        initialPosX = 3;
 
-    drawPiece(pieces[pieceRandom], colors[pieceRandom], initialPosX, 0);
+
+    var initPos;
+    if (width == 22)
+        initPos = 9;
+    else
+        initPos = 3;
+
+    CurrentPiece = {
+        piece: pieces[pieceRandom],
+        color: colors[pieceRandom],
+        x: initPos,
+        y: 0
+    }
+
+    drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+    pieceInterval = setInterval(() => {
+        undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
+        CurrentPiece.y++;
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+    }, gameSpeed)
+
+    document.querySelector('body').addEventListener('keydown', (x) => movePiece(x));
 
     document.getElementById('play').style.display = 'none';
     document.getElementById('stop').style.display = 'initial';
+}
+
+function movePiece(event) {
+    if (event.key == 'ArrowLeft') {
+        undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
+        CurrentPiece.x--;
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+    } else if (event.key == 'ArrowRight') {
+        undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
+        CurrentPiece.x++;
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+    }
+    else if (event.key == 'ArrowDown') {
+        undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
+        CurrentPiece.y++;
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+    }
 }
 
 function stop() {
@@ -107,6 +143,9 @@ function stop() {
 
     emptyMatrix();
     clearInterval(timeInterval);
+    clearInterval(pieceInterval);
+    console.log(document.querySelector('body'))
+    // .removeEventListener('keydown', movePiece, false);
     document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
 
     document.getElementById('play').style.display = 'initial';
@@ -135,6 +174,23 @@ function timer() {
         }
         document.getElementById("tempo").innerHTML = minutos + "m" + ":" + segundos + "s";
     }, 1000);
+}
+
+
+function undrawPiece(piece, x, y) {
+    var canvas = document.getElementById("game");
+    var canvasContext = canvas.getContext("2d");
+
+    for (a = 0; a < piece.length; a++) {
+        for (b = 0; b < piece.length; b++) {
+            if (piece[b][a]) {
+                canvasContext.fillStyle = 'white';
+                canvasContext.fillRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
+                canvasContext.fillStyle = 'black';
+                canvasContext.strokeRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
+            }
+        }
+    }
 }
 
 function drawPiece(piece, color, x, y) {
