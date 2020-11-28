@@ -160,10 +160,15 @@ function movePiece(event) {
       );
     } else if (event.key == "ArrowRight") {
       console.log("right");
-
+    //   console.log(
+    //     "current piece x: ",
+    //     CurrentPiece.x,
+    //     "current 0: ",
+    //     CurrentPiece.piece[0].length
+    //   );
       if (
         !verifyBoundries(
-          CurrentPiece.x + 1,
+          CurrentPiece.x + CurrentPiece.piece[0].length,
           CurrentPiece.y,
           CurrentPiece.piece.length
         )
@@ -258,14 +263,19 @@ function undrawPiece(piece, x, y) {
   }
 }
 
-function verifyBoundries(x, y, length) {
-  console.log(matrix[y + (length - 1)][x + (length - 1)]);
-  console.log(matrix[y][x]);
-  console.log("y: ", y, " x: ", x, " l: ", length);
+function verifyBoundries(x, y /*, height, size*/) {
+  //   console.log("ver 1");
+  //   console.log(matrix[y + (length - 1)][x + (length - 1)]);
+  //   console.log("y: ", y + (length - 1));
+  //   console.log("x: ", x + (length - 1));
+
+//   console.log("ver 2");
+//   console.log(matrix[y][x]);
+//   console.log("y: ", y, " x: ", x, " l: ", length);
 
   if (
-    matrix[y + (length - 1)][x + (length - 1)] != undefined &&
-    matrix[y][x] == 0
+    // matrix[y + (height - 1)][x + (size - 1)] != undefined &&
+    matrix[y][x] === 0
   ) {
     return true;
   } else return false;
