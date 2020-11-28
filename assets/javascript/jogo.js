@@ -26,7 +26,7 @@ const pieces = [
   ],
   [
     //   peça 4 - funcionando
-    
+
     [0, 1, 0],
     [1, 1, 1],
   ],
@@ -117,7 +117,7 @@ function play() {
     if (
       verifyBoundries(
         CurrentPiece.x,
-        CurrentPiece.y + 1,
+        CurrentPiece.y + CurrentPiece.piece.length,
         CurrentPiece.piece.length
       )
     ) {
@@ -182,7 +182,7 @@ function movePiece(event) {
       if (
         !verifyBoundries(
           CurrentPiece.x,
-          CurrentPiece.y + 1,
+          CurrentPiece.y + CurrentPiece.piece.length,
           CurrentPiece.piece.length
         )
       )
@@ -245,7 +245,7 @@ function undrawPiece(piece, x, y) {
   for (a = 0; a < piece[0].length; a++) {
     // console.log("a ", a);
     for (b = 0; b < piece.length; b++) {
-    //   console.log("b ", b);
+      //   console.log("b ", b);
       if (piece[b][a]) {
         console.log("undraw");
         canvasContext.fillStyle = "white";
@@ -259,6 +259,10 @@ function undrawPiece(piece, x, y) {
 }
 
 function verifyBoundries(x, y, length) {
+  console.log(matrix[y + (length - 1)][x + (length - 1)]);
+  console.log(matrix[y][x]);
+  console.log("y: ", y, " x: ", x, " l: ", length);
+
   if (
     matrix[y + (length - 1)][x + (length - 1)] != undefined &&
     matrix[y][x] == 0
@@ -274,7 +278,7 @@ function drawPiece(piece, color, x, y) {
   for (a = 0; a < piece[0].length; a++) {
     // console.log("a ", a);
     for (b = 0; b < piece.length; b++) {
-    //   console.log("b ", b);
+      //   console.log("b ", b);
       if (piece[b][a]) {
         canvasContext.fillStyle = color;
         canvasContext.fillRect(a * PS + PS * x, b * PS + PS * y, PS, PS);
