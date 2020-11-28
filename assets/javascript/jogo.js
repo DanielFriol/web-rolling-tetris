@@ -6,27 +6,20 @@ var matrix;
 const pieces = [
   [
     //   peça 1 - funcionando
-    // [0, 0, 0, 0],
     [1, 0, 1],
     [1, 1, 1],
-    // [0, 0, 0, 0],
   ],
   [
     //   peça 2 - funcionando
-    // [0, 0, 0, 0],
     [1, 1],
     [1, 1],
-    // [0, 0, 0, 0],
   ],
   [
     //   peça 3 - funcionando
-    // [0, 0, 0],
     [1],
-    // [0, 0, 0],
   ],
   [
     //   peça 4 - funcionando
-
     [0, 1, 0],
     [1, 1, 1],
   ],
@@ -44,7 +37,6 @@ const pieces = [
   ],
   [
     //   peça 7 - funcionando
-
     [1, 1, 1, 1],
   ],
 ];
@@ -92,11 +84,9 @@ function play() {
 
   var pieceRandom = Math.floor(Math.random() * 7);
 
-  var initPos;
-  if (width == 22) initPos = 9;
-  else initPos = 3;
+  var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
 
-  //   console.log(pieces[0]);
+  //   console.log(width / 2 - pieces[pieceRandom][0].length / 2);
 
   CurrentPiece = {
     piece: pieces[pieceRandom],
@@ -132,6 +122,9 @@ function play() {
         CurrentPiece.y
       );
     }
+    if (CurrentPiece.y + CurrentPiece.piece.length > height - 1) {
+      stop();
+    }
   }, gameSpeed);
 
   document.getElementById("play").style.display = "none";
@@ -160,12 +153,6 @@ function movePiece(event) {
       );
     } else if (event.key == "ArrowRight") {
       console.log("right");
-    //   console.log(
-    //     "current piece x: ",
-    //     CurrentPiece.x,
-    //     "current 0: ",
-    //     CurrentPiece.piece[0].length
-    //   );
       if (
         !verifyBoundries(
           CurrentPiece.x + CurrentPiece.piece[0].length,
@@ -200,6 +187,9 @@ function movePiece(event) {
         CurrentPiece.x,
         CurrentPiece.y
       );
+      if (CurrentPiece.y + CurrentPiece.piece.length > height - 1) {
+        stop();
+      }
     }
   }
 }
@@ -252,7 +242,7 @@ function undrawPiece(piece, x, y) {
     for (b = 0; b < piece.length; b++) {
       //   console.log("b ", b);
       if (piece[b][a]) {
-        console.log("undraw");
+        // console.log("undraw");
         canvasContext.fillStyle = "white";
         canvasContext.fillRect(a * PS + PS * x, b * PS + PS * y, PS, PS);
         canvasContext.fillStyle = "black";
@@ -269,9 +259,9 @@ function verifyBoundries(x, y /*, height, size*/) {
   //   console.log("y: ", y + (length - 1));
   //   console.log("x: ", x + (length - 1));
 
-//   console.log("ver 2");
-//   console.log(matrix[y][x]);
-//   console.log("y: ", y, " x: ", x, " l: ", length);
+  //   console.log("ver 2");
+  //   console.log(matrix[y][x]);
+  //   console.log("y: ", y, " x: ", x, " l: ", length);
 
   if (
     // matrix[y + (height - 1)][x + (size - 1)] != undefined &&
