@@ -107,7 +107,7 @@ function play() {
     if (
       verifyBoundries(
         CurrentPiece.x,
-        CurrentPiece.y + CurrentPiece.piece.length,
+        CurrentPiece.y + CurrentPiece.piece.length, // Antes estava medindo somente peças quadras, assim funciona de maneira humana
         CurrentPiece.piece.length
       )
     ) {
@@ -155,7 +155,7 @@ function movePiece(event) {
       console.log("right");
       if (
         !verifyBoundries(
-          CurrentPiece.x + CurrentPiece.piece[0].length,
+          CurrentPiece.x + CurrentPiece.piece[0].length, // Antes estava medindo somente peças quadras, assim funciona de maneira humana
           CurrentPiece.y,
           CurrentPiece.piece.length
         )
@@ -174,7 +174,7 @@ function movePiece(event) {
       if (
         !verifyBoundries(
           CurrentPiece.x,
-          CurrentPiece.y + CurrentPiece.piece.length,
+          CurrentPiece.y + CurrentPiece.piece.length, // Antes estava medindo somente peças quadras, assim funciona de maneira humana
           CurrentPiece.piece.length
         )
       )
@@ -238,6 +238,7 @@ function undrawPiece(piece, x, y) {
   var canvasContext = canvas.getContext("2d");
 
   for (a = 0; a < piece[0].length; a++) {
+    // Antes estava medindo somente peças quadras, assim funciona de maneira humana
     // console.log("a ", a);
     for (b = 0; b < piece.length; b++) {
       //   console.log("b ", b);
@@ -253,18 +254,9 @@ function undrawPiece(piece, x, y) {
   }
 }
 
-function verifyBoundries(x, y /*, height, size*/) {
-  //   console.log("ver 1");
-  //   console.log(matrix[y + (length - 1)][x + (length - 1)]);
-  //   console.log("y: ", y + (length - 1));
-  //   console.log("x: ", x + (length - 1));
-
-  //   console.log("ver 2");
-  //   console.log(matrix[y][x]);
-  //   console.log("y: ", y, " x: ", x, " l: ", length);
-
+function verifyBoundries(x, y) {
   if (
-    // matrix[y + (height - 1)][x + (size - 1)] != undefined &&
+    // matrix[y + (height - 1)][x + (size - 1)] != undefined && // Não precisa disso pq vcs estavam medindo somente peças quadradas
     matrix[y][x] === 0
   ) {
     return true;
@@ -276,6 +268,7 @@ function drawPiece(piece, color, x, y) {
   var canvasContext = canvas.getContext("2d");
 
   for (a = 0; a < piece[0].length; a++) {
+    // Antes estava medindo somente peças quadras, assim funciona de maneira humana
     // console.log("a ", a);
     for (b = 0; b < piece.length; b++) {
       //   console.log("b ", b);
