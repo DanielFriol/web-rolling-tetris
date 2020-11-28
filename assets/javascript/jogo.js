@@ -26,9 +26,9 @@ const pieces = [
         [1, 1, 1]
     ],
     [
-        [0, 0, 1],
-        [0, 0, 1],
-        [0, 1, 1]
+        [0, 1, 0],
+        [0, 1, 0],
+        [1, 1, 0]
     ],
     [
         [1, 0, 0],
@@ -58,7 +58,10 @@ var CurrentPiece;
 const PS = 20;
 var pieceInterval;
 var timeInterval;
-var gameSpeed = 1000;
+var gameSpeed = 500;
+let eventListener;
+
+addEventListener('keydown', (x) => movePiece(x));
 
 
 function play() {
@@ -77,7 +80,7 @@ function play() {
     tetris.style.height = height * PS;
 
     emptyMatrix();
-    console.table(matrix);
+
 
     var canvasContext = canvas.getContext("2d");
 
@@ -110,32 +113,43 @@ function play() {
 
     drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
     pieceInterval = setInterval(() => {
-        undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
-        CurrentPiece.y++;
-        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+        if (verifyBoundries(CurrentPiece.x, CurrentPiece.y + 1, CurrentPiece.piece.length)) {
+            undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
+            CurrentPiece.y++;
+            drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+
+        }
     }, gameSpeed)
 
-    document.querySelector('body').addEventListener('keydown', (x) => movePiece(x));
+
 
     document.getElementById('play').style.display = 'none';
     document.getElementById('stop').style.display = 'initial';
 }
 
+
 function movePiece(event) {
     if (event.key == 'ArrowLeft') {
+        if (!verifyBoundries(CurrentPiece.x - 1, CurrentPiece.y, CurrentPiece.piece.length))
+            return;
         undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
         CurrentPiece.x--;
-        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y,);
     } else if (event.key == 'ArrowRight') {
+        if (!verifyBoundries(CurrentPiece.x + 1, CurrentPiece.y, CurrentPiece.piece.length))
+            return;
         undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
         CurrentPiece.x++;
-        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y,);
     }
     else if (event.key == 'ArrowDown') {
+        if (!verifyBoundries(CurrentPiece.x, CurrentPiece.y + 1, CurrentPiece.piece.length))
+            return;
         undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
         CurrentPiece.y++;
-        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y);
+        drawPiece(CurrentPiece.piece, CurrentPiece.color, CurrentPiece.x, CurrentPiece.y,);
     }
+
 }
 
 function stop() {
@@ -144,8 +158,7 @@ function stop() {
     emptyMatrix();
     clearInterval(timeInterval);
     clearInterval(pieceInterval);
-    console.log(document.querySelector('body'))
-    // .removeEventListener('keydown', movePiece, false);
+    document.querySelector('body').removeEventListener('keydown', movePiece, false);
     document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
 
     document.getElementById('play').style.display = 'initial';
@@ -188,9 +201,18 @@ function undrawPiece(piece, x, y) {
                 canvasContext.fillRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
                 canvasContext.fillStyle = 'black';
                 canvasContext.strokeRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
+                matrix[y + b][x + a] = 0;
             }
         }
     }
+}
+
+function verifyBoundries(x, y, length) {
+    if (matrix[y + (length - 1)][x + (length - 1)] != undefined && matrix[y][x] == 0)
+        return true;
+    else
+        return false;
+
 }
 
 function drawPiece(piece, color, x, y) {
@@ -204,6 +226,7 @@ function drawPiece(piece, color, x, y) {
                 canvasContext.fillRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
                 canvasContext.fillStyle = 'black';
                 canvasContext.strokeRect((a * PS) + (PS * x), (b * PS) + (PS * y), PS, PS);
+                matrix[y + b][x + a] = 1;
             }
         }
     }
