@@ -103,6 +103,7 @@ function play() {
     CurrentPiece.y
   );
   pieceInterval = setInterval(() => {
+    console.log("tic");
     if (
       verifyBoundries(
         CurrentPiece.x,
@@ -110,6 +111,8 @@ function play() {
         CurrentPiece.piece.length
       )
     ) {
+      console.log("tac");
+
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
       CurrentPiece.y++;
       drawPiece(
@@ -232,6 +235,7 @@ function undrawPiece(piece, x, y) {
   for (a = 0; a < piece.length; a++) {
     for (b = 0; b < piece.length; b++) {
       if (piece[b][a]) {
+        console.log("undraw");
         canvasContext.fillStyle = "white";
         canvasContext.fillRect(a * PS + PS * x, b * PS + PS * y, PS, PS);
         canvasContext.fillStyle = "black";
@@ -246,9 +250,9 @@ function verifyBoundries(x, y, length) {
   if (
     matrix[y + (length - 1)][x + (length - 1)] != undefined &&
     matrix[y][x] == 0
-  )
+  ) {
     return true;
-  else return false;
+  } else return false;
 }
 
 function drawPiece(piece, color, x, y) {
