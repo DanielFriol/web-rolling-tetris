@@ -6,48 +6,46 @@ var matrix;
 const pieces = [
   [
     //   peça 1 - funcionando
-    [0, 0, 0, 0],
-    [0, 1, 0, 1],
-    [0, 1, 1, 1],
-    [0, 0, 0, 0],
+    // [0, 0, 0, 0],
+    [1, 0, 1],
+    [1, 1, 1],
+    // [0, 0, 0, 0],
   ],
   [
     //   peça 2 - funcionando
-    [0, 0, 0, 0],
-    [0, 1, 1, 0],
-    [0, 1, 1, 0],
-    [0, 0, 0, 0],
+    // [0, 0, 0, 0],
+    [1, 1],
+    [1, 1],
+    // [0, 0, 0, 0],
   ],
   [
     //   peça 3 - funcionando
-    [0, 0, 0],
-    [0, 1, 0],
-    [0, 0, 0],
+    // [0, 0, 0],
+    [1],
+    // [0, 0, 0],
   ],
   [
     //   peça 4 - funcionando
-    [0, 0, 0],
+    
     [0, 1, 0],
     [1, 1, 1],
   ],
   [
     //   peça 5 - funcionando
-    [0, 1, 0],
-    [0, 1, 0],
-    [1, 1, 0],
+    [0, 1],
+    [0, 1],
+    [1, 1],
   ],
   [
     //   peça 6  - funcionando
-    [0, 1, 0],
-    [0, 1, 0],
-    [0, 1, 1],
+    [1, 0],
+    [1, 0],
+    [1, 1],
   ],
   [
     //   peça 7 - funcionando
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
+
     [1, 1, 1, 1],
-    [0, 0, 0, 0],
   ],
 ];
 
@@ -98,12 +96,15 @@ function play() {
   if (width == 22) initPos = 9;
   else initPos = 3;
 
+  //   console.log(pieces[0]);
+
   CurrentPiece = {
     piece: pieces[pieceRandom],
     color: colors[pieceRandom],
     x: initPos,
     y: 0,
   };
+  console.log(CurrentPiece);
 
   drawPiece(
     CurrentPiece.piece,
@@ -112,7 +113,7 @@ function play() {
     CurrentPiece.y
   );
   pieceInterval = setInterval(() => {
-    console.log("tic");
+    // console.log("tic");
     if (
       verifyBoundries(
         CurrentPiece.x,
@@ -120,7 +121,7 @@ function play() {
         CurrentPiece.piece.length
       )
     ) {
-      console.log("tac");
+      //   console.log("tac");
 
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
       CurrentPiece.y++;
@@ -241,8 +242,10 @@ function undrawPiece(piece, x, y) {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
 
-  for (a = 0; a < piece.length; a++) {
+  for (a = 0; a < piece[0].length; a++) {
+    // console.log("a ", a);
     for (b = 0; b < piece.length; b++) {
+    //   console.log("b ", b);
       if (piece[b][a]) {
         console.log("undraw");
         canvasContext.fillStyle = "white";
@@ -268,8 +271,10 @@ function drawPiece(piece, color, x, y) {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
 
-  for (a = 0; a < piece.length; a++) {
+  for (a = 0; a < piece[0].length; a++) {
+    // console.log("a ", a);
     for (b = 0; b < piece.length; b++) {
+    //   console.log("b ", b);
       if (piece[b][a]) {
         canvasContext.fillStyle = color;
         canvasContext.fillRect(a * PS + PS * x, b * PS + PS * y, PS, PS);
