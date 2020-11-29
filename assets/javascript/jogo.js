@@ -540,6 +540,10 @@ function linesComplete(linesCompleted) {
   document.getElementById("linhas").innerHTML = `${linesCompleted} Linhas`;
 }
 
+function rolling() {
+  document.getElementById("tetris").style.transform = "rotate(" + 180 + "deg)";
+}
+
 function linesUpDown(fromHeight) {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
