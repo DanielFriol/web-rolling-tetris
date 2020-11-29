@@ -120,6 +120,7 @@ function play() {
     console.log("y: ", CurrentPiece.y, " ly: ", lastY);
     if (CurrentPiece.y == lastY) {
       // Game Over
+      alert("Game Over");
       console.log("Stop");
       stop();
     }
@@ -517,16 +518,22 @@ function verifyLines() {
   score += newScore;
   document.getElementById("score").innerHTML = `${score} Pontos`;
 
-  difficulty();
+  difficulty(score);
 }
 
-function difficulty() {
-  if (score < 300) {
-    document.getElementById("dificuldade").innerHTML = "Fácil";
-  } else if (score % 300 == 0 && score >= 300) {
-    document.getElementById("dificuldade").innerHTML = "Médio";
-  } else if (score % 300 == 0 && score >= 600) {
-    document.getElementById("dificuldade").innerHTML = "Díficil";
+function difficulty(score) {
+  const multiplo = 300;
+  
+  if (score < multiplo) {
+    document.getElementById("dificuldade").innerHTML = "1";
+  } else if (score >= multiplo && score < (multiplo * 2)) {
+    document.getElementById("dificuldade").innerHTML = "2";
+  } else if (score >= (multiplo * 2) && score < (multiplo * 3)) {
+    document.getElementById("dificuldade").innerHTML = "3";
+  } else if (score >= (multiplo * 3) && score < (multiplo * 4)) {
+    document.getElementById("dificuldade").innerHTML = "4";
+  } else if (score >= (multiplo * 4) && score < (multiplo * 5)) {
+    document.getElementById("dificuldade").innerHTML = "5";
   }
 }
 
