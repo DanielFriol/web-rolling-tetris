@@ -132,6 +132,10 @@ function play() {
 
 function generateNewPiece() {
   var pieceRandom = Math.floor(Math.random() * 7);
+  
+  if (pieceRandom == 2) {
+  rolling();
+  }
 
   var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
 
