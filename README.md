@@ -13,5 +13,6 @@ https://www.youtube.com/watch?v=QJWP4z3FHhM&ab_channel=JoaoRonaldoCunha
 3. Fazer a peça fixar no canvas com sua cor (sugiro testar isso tirando a limpeza da `matrix` quando dá stop) (outra sugestão é a seguinte verificaçao no `verifyBoundries`: `CurrentPiece.y + CurrentPiece.piece.length > height - 1 && matrix[y][x] == 0`) (sugestão de gravar no `matrix` um numero diferente pra cada cor)
 4. Game Over se a peça no topo do canvas nao conseguir se mover
 5. Girar o rolê quando vir a peça especial
+6. Arrumar pontuação do tabuleiro 22x44
 
 Isso é tudo eu acho.
