@@ -14,5 +14,6 @@ https://www.youtube.com/watch?v=QJWP4z3FHhM&ab_channel=JoaoRonaldoCunha
 4. Game Over se a peça no topo do canvas nao conseguir se mover
 5. Girar o rolê quando vir a peça especial
 6. Arrumar pontuação do tabuleiro 22x44
+7. Fixar canvas para não haver rolagem de página
 
 Isso é tudo eu acho.
