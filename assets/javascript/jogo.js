@@ -523,7 +523,6 @@ function verifyLines() {
 
 function difficulty(score) {
   const multiplo = 300;
-  
   if (score < multiplo) {
     document.getElementById("dificuldade").innerHTML = "1";
   } else if (score >= multiplo && score < (multiplo * 2)) {
