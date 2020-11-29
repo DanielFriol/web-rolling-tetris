@@ -15,7 +15,7 @@ https://www.youtube.com/watch?v=QJWP4z3FHhM&ab_channel=JoaoRonaldoCunha
 4. ~~Enviar mais peças e não mexer a peça anterior~~
 5. Game Over se a peça no topo do canvas nao conseguir se mover
 6. Girar o rolê quando vir a peça especial
-7. Arrumar a peça 1 (vermelha)
+7. ~~Arrumar a peça 1 (vermelha)~~
 8. Adaptar a rotação, pontuação e linhas eliminadas, de acordo com a rotação
 9. Arrumar pontuação do tabuleiro 22x44
 10. Fixar canvas para não haver rolagem de página
