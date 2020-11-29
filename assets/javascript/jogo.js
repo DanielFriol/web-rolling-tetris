@@ -259,6 +259,9 @@ function stop() {
     clearInterval(pieceInterval);
     removeEventListener("keydown", movePiece, false);
     document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
+    document.getElementById("dificuldade").innerHTML = "--";
+    document.getElementById("score").innerHTML = "0 Pontos";
+    document.getElementById("linhas").innerHTML = "0 Linhas";
 
     document.getElementById("play").style.display = "initial";
     document.getElementById("stop").style.display = "none";
