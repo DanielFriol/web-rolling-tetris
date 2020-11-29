@@ -6,39 +6,39 @@ var matrix;
 const pieces = [
   [
     //   peça 1 - funcionando
-    [1, 0, 1],
-    [1, 1, 1],
+    [9, 0, 9],
+    [9, 9, 9],
   ],
-  [
-    //   peça 2 - funcionando
-    [1, 1],
-    [1, 1],
-  ],
-  [
-    //   peça 3 - funcionando
-    [1],
-  ],
+  // [
+  //   //   peça 2 - funcionando
+  //   [9, 9],
+  //   [9, 9],
+  // ],
+  // [
+  //   //   peça 3 - funcionando
+  //   [9],
+  // ],
   [
     //   peça 4 - funcionando
-    [0, 1, 0],
-    [1, 1, 1],
+    [9, 9, 9],
+    [0, 9, 0],
   ],
-  [
-    //   peça 5 - funcionando
-    [0, 1],
-    [0, 1],
-    [1, 1],
-  ],
+  // [
+  //   //   peça 5 - funcionando
+  //   [0, 9],
+  //   [0, 9],
+  //   [9, 9],
+  // ],
   [
     //   peça 6  - funcionando
-    [1, 0],
-    [1, 0],
-    [1, 1],
+    [9, 0],
+    [9, 0],
+    [9, 9],
   ],
-  [
-    //   peça 7 - funcionando
-    [1, 1, 1, 1],
-  ],
+  // [
+  //   //   peça 7 - funcionando
+  //   [9, 9, 9, 9],
+  // ],
 ];
 
 const colors = ["red", "blue", "green", "yellow", "grey", "purple", "brown"];
@@ -81,18 +81,19 @@ function play() {
   }
 
   timer();
-
+  let lastY = 0;  
   generateNewPiece();
-
+  console.log("x: ", CurrentPiece.x);
   pieceInterval = setInterval(() => {
-    // console.log("tic");
+    lastY = CurrentPiece.y;
     if (
-      verifyBoundries(
+      verifyBoundriesDownFoda(
+        CurrentPiece.piece,
         CurrentPiece.x,
-        CurrentPiece.y + CurrentPiece.piece.length, // Antes estava medindo somente peças quadras, assim funciona de maneira humana
-        CurrentPiece.piece.length
+        CurrentPiece.y + 1 // Antes estava medindo somente peças quadras, assim funciona de maneira humana
       )
     ) {
+      // console.log(CurrentPiece.y + CurrentPiece.piece.length);
       //   console.log("tac");
 
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
@@ -104,11 +105,16 @@ function play() {
         CurrentPiece.y
       );
     }
+    console.log("y: ", CurrentPiece.y, " ly: ", lastY);
+    if (CurrentPiece.y == lastY) {
+      // Game Over
+      stop();
+    }
     if (
-      verifyCollision(
-        CurrentPiece,
+      !verifyBoundriesDownFoda(
+        CurrentPiece.piece,
         CurrentPiece.x,
-        CurrentPiece.y + CurrentPiece.piece.length
+        CurrentPiece.y + 1
       )
     ) {
       generateNewPiece();
@@ -120,7 +126,7 @@ function play() {
 }
 
 function generateNewPiece() {
-  var pieceRandom = Math.floor(Math.random() * 7);
+  var pieceRandom = Math.floor(Math.random() * 3);
 
   var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
 
@@ -132,13 +138,14 @@ function generateNewPiece() {
     x: initPos,
     y: 0,
   };
-  console.log(CurrentPiece);
+  // console.log(CurrentPiece);
   drawPiece(
     CurrentPiece.piece,
     CurrentPiece.color,
     CurrentPiece.x,
     CurrentPiece.y
   );
+  console.log("y: ", CurrentPiece.y);
 }
 
 function movePiece(event) {
@@ -146,11 +153,7 @@ function movePiece(event) {
     if (event.key == "ArrowLeft") {
       console.log("left");
       if (
-        !verifyBoundries(
-          CurrentPiece.x - 1,
-          CurrentPiece.y,
-          CurrentPiece.piece.length
-        )
+        !verifyBoundriesLeft(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y)
       )
         return;
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
@@ -164,15 +167,16 @@ function movePiece(event) {
     } else if (event.key == "ArrowRight") {
       console.log("right");
       if (
-        !verifyBoundries(
-          CurrentPiece.x + CurrentPiece.piece[0].length, // Antes estava medindo somente peças quadras, assim funciona de maneira humana
-          CurrentPiece.y,
-          CurrentPiece.piece.length
+        !verifyBoundriesRight(
+          CurrentPiece.piece,
+          CurrentPiece.x,
+          CurrentPiece.y
         )
       )
         return;
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
       CurrentPiece.x++;
+      console.log("x: ", CurrentPiece.x);
       drawPiece(
         CurrentPiece.piece,
         CurrentPiece.color,
@@ -182,10 +186,10 @@ function movePiece(event) {
     } else if (event.key == "ArrowDown") {
       console.log("down");
       if (
-        !verifyBoundries(
+        !verifyBoundriesDownFoda(
+          CurrentPiece.piece,
           CurrentPiece.x,
-          CurrentPiece.y + CurrentPiece.piece.length, // Antes estava medindo somente peças quadras, assim funciona de maneira humana
-          CurrentPiece.piece.length
+          CurrentPiece.y + 1
         )
       )
         return;
@@ -198,10 +202,10 @@ function movePiece(event) {
         CurrentPiece.y
       );
       if (
-        verifyCollision(
-          CurrentPiece,
+        !verifyBoundriesDownFoda(
+          CurrentPiece.piece,
           CurrentPiece.x,
-          CurrentPiece.y + CurrentPiece.piece.length
+          CurrentPiece.y + 1
         )
       ) {
         generateNewPiece();
@@ -210,6 +214,9 @@ function movePiece(event) {
       console.log("up");
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
       CurrentPiece.piece = rotate(CurrentPiece.piece);
+      // let aux = CurrentPiece.x; //makakeagem que o daniel nao fez
+      // CurrentPiece.x = CurrentPiece.y;
+      // CurrentPiece.y = aux;
       drawPiece(
         CurrentPiece.piece,
         CurrentPiece.color,
@@ -299,12 +306,157 @@ function undrawPiece(piece, x, y) {
 }
 
 function verifyBoundries(x, y) {
-  if (
-    // matrix[y + (height - 1)][x + (size - 1)] != undefined && // Não precisa disso pq vcs estavam medindo somente peças quadradas
-    matrix[y][x] === 0
-  ) {
+  if (matrix[y][x] === 0) {
     return true;
   } else return false;
+}
+
+function verifyBoundriesDownFoda(piece, x, y) {
+  // console.log("y: ", y);
+  // console.log("p.l: ", piece.length);
+  // console.log("p[0].l: ", piece[0].length);
+  // console.log("0 0: ", piece[0][0]);
+  for (let i = 0; i < piece.length; i++) {
+    for (let j = 0; j < piece[0].length; j++) {
+      // console.log("i ", i, " j ", j);
+      if (i + 1 < piece.length) {
+        if (piece[i][j] != 0 && piece[i + 1][j] != 9) {
+          // console.log("x ", x + j, " y ", y + i, " piece: ", piece[i][j]);
+          if (y + piece.length - 1 > height - 1) {
+            // console.log("tem merda embaixo fim");
+            return false;
+          }
+          if (matrix[y + i][x + j] != 0) {
+            // console.log("tem merda embaixo 2 ");
+            return false;
+          }
+        }
+      } else {
+        if (piece[i][j] != 0) {
+          // console.log("x ", x + j, " y ", y + i, " piece: ", piece[i][j]);
+          if (y + piece.length - 1 > height - 1) {
+            // console.log("tem merda embaixo fim");
+            return false;
+          }
+          if (matrix[y + i][x + j] != 0) {
+            // console.log("tem merda embaixo 2 ");
+            return false;
+          }
+        }
+      }
+    }
+  }
+  // console.log("nao tem nada embaixo");
+  return true;
+}
+
+function verifyBoundriesLeft(piece, x, y) {
+  x += piece[0].length - 1;
+  // console.log("y: ", y);
+  // console.log("x: ", x);
+  // console.log("p.l: ", piece.length);
+  // console.log("p[0].l: ", piece[0].length);
+  for (let i = 0; i < piece.length; i++) {
+    for (let j = piece[0].length - 1; j >= 0; j--) {
+      // console.log("p1 ", piece[i][j], " p2 ", piece[i][j - 1], "\n");
+      // console.log("x: ", j, " y ", i);
+      // console.log("j - 1: ", j - 1);
+      if (j >= 0) {
+        if (piece[i][j] != 0 && piece[i][j - 1] != 9) {
+          // console.log("entrou if 1: ", piece[i][j]);
+          // console.log("x ", x - piece[0].length + j, " y ", y + i, " piece: ", piece[i][j]);
+          if (y + piece.length - 1 > height - 1) {
+            // console.log("tem merda embaixo fim");
+            return false;
+          }
+
+          // console.log("y + i: ", y + i);
+          if (matrix[y + i][x - piece[0].length + j] != 0) {
+            // console.log("matrix[y + i][x - j - 1]: ", matrix[y + i][x - j - 1]);
+            // console.log("tem merda do lado 1 ");
+            return false;
+          }
+        }
+      } else {
+        if (piece[i][j] != 0) {
+          // console.log("entrou if 2: ", piece[i][j]);
+          // console.log("x ", x - piece[0].length + 1, " y ", y + i, " piece: ", piece[i][j]);
+
+          if (y + piece.length - 1 > height - 1) {
+            // console.log("tem merda embaixo fim");
+            return false;
+          }
+          if (matrix[y + i][x - piece[0].length + 1] != 0) {
+            // console.log("x + j - 1 : ", x - j - 1);
+            // console.log("tem merda do lado 2 ");
+            return false;
+          }
+        }
+      }
+      // console.log("************************");
+    }
+    // console.log("----------------------------");
+  }
+  // console.log("pode ir pra esquerda sim");
+  return true;
+}
+
+function verifyBoundriesRight(piece, x, y) {
+  // console.log("y: ", y);
+  // console.log("x: ", x);
+  // console.log("p.l: ", piece.length);
+  // console.log("p[0].l: ", piece[0].length);
+  for (let i = 0; i < piece.length; i++) {
+    for (let j = 0; j < piece[0].length; j++) {
+      // console.log("p1 ", piece[i][j], " p2 ", piece[i][j + 1]);
+      if (j + 1 < piece[0].length) {
+        if (piece[i][j] != 0 && piece[i][j + 1] != 9) {
+          // console.log("x ", x + j + 1, " y ", y + i, " piece: ", piece[i][j]);
+          if (y + piece.length - 1 > height - 1) {
+            // console.log("tem merda embaixo fim");
+            return false;
+          }
+          if (matrix[y + i][x + j + 1] != 0) {
+            // console.log("tem merda do lado 1 ");
+            return false;
+          }
+        }
+      } else {
+        if (piece[i][j] != 0) {
+          // console.log("x ", x + j + 1, " y ", y + i, " piece: ", piece[i][j]);
+          if (y + piece.length - 1 > height - 1) {
+            // console.log("tem merda embaixo fim");
+            return false;
+          }
+          if (matrix[y + i][x + j + 1] != 0) {
+            // console.log("tem merda do lado 2 ");
+            return false;
+          }
+        }
+      }
+    }
+  }
+  // console.log("pode ir pra direita sim");
+  return true;
+}
+
+function verifyBoundriesDown(piece, x, y) {
+  // console.log(y);
+  for (i = 0; i < piece[0].length; i++) {
+    if (piece[piece.length - 1][i] != 0) {
+      // console.log("x ", x + i, " y ", y);
+      if (y > height - 1) {
+        // console.log("tem merda embaixo");
+        return false;
+      }
+      if (matrix[y][x + i] != 0) {
+        // console.log("tem merda embaixo");
+        return false;
+      }
+    }
+  }
+  // console.log("nao tem nada embaixo");
+  return true;
 }
 
 function drawPiece(piece, color, x, y) {
