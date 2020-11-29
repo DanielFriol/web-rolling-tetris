@@ -258,6 +258,10 @@ function stop() {
     clearInterval(timeInterval);
     clearInterval(pieceInterval);
     removeEventListener("keydown", movePiece, false);
+    
+    score = 0;
+    linesCompleted = 0;
+    
     document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
     document.getElementById("dificuldade").innerHTML = "--";
     document.getElementById("score").innerHTML = "0 Pontos";
