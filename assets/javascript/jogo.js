@@ -9,36 +9,36 @@ const pieces = [
     [9, 0, 9],
     [9, 9, 9],
   ],
-  // [
-  //   //   peça 2 - funcionando
-  //   [9, 9],
-  //   [9, 9],
-  // ],
-  // [
-  //   //   peça 3 - funcionando
-  //   [9],
-  // ],
+  [
+    //   peça 2 - funcionando
+    [9, 9],
+    [9, 9],
+  ],
+  [
+    //   peça 3 - funcionando
+    [9],
+  ],
   [
     //   peça 4 - funcionando
     [9, 9, 9],
     [0, 9, 0],
   ],
-  // [
-  //   //   peça 5 - funcionando
-  //   [0, 9],
-  //   [0, 9],
-  //   [9, 9],
-  // ],
+  [
+    //   peça 5 - funcionando
+    [0, 9],
+    [0, 9],
+    [9, 9],
+  ],
   [
     //   peça 6  - funcionando
     [9, 0],
     [9, 0],
     [9, 9],
   ],
-  // [
-  //   //   peça 7 - funcionando
-  //   [9, 9, 9, 9],
-  // ],
+  [
+    //   peça 7 - funcionando
+    [9, 9, 9, 9],
+  ],
 ];
 
 const colors = ["red", "blue", "green", "yellow", "grey", "purple", "brown"];
@@ -126,7 +126,7 @@ function play() {
 }
 
 function generateNewPiece() {
-  var pieceRandom = Math.floor(Math.random() * 3);
+  var pieceRandom = Math.floor(Math.random() * 7);
 
   var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
 
