@@ -120,8 +120,8 @@ function play() {
     console.log("y: ", CurrentPiece.y, " ly: ", lastY);
     if (CurrentPiece.y == lastY) {
       // Game Over
-    console.log("Stop");
-    stop();
+      console.log("Stop");
+      stop();
     }
   }, gameSpeed);
 
@@ -454,25 +454,6 @@ function verifyBoundriesRight(piece, x, y) {
   return true;
 }
 
-function verifyBoundriesDown(piece, x, y) {
-  // console.log(y);
-  for (i = 0; i < piece[0].length; i++) {
-    if (piece[piece.length - 1][i] != 0) {
-      // console.log("x ", x + i, " y ", y);
-      if (y > height - 1) {
-        // console.log("tem merda embaixo");
-        return false;
-      }
-      if (matrix[y][x + i] != 0) {
-        // console.log("tem merda embaixo");
-        return false;
-      }
-    }
-  }
-  // console.log("nao tem nada embaixo");
-  return true;
-}
-
 function drawPiece(piece, color, x, y) {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
@@ -488,7 +469,7 @@ function drawPiece(piece, color, x, y) {
         canvasContext.fillStyle = "black";
         canvasContext.strokeRect(a * PS + PS * x, b * PS + PS * y, PS, PS);
         // matrix[y + b][x + a] = 1;
-        matrix[y + b][x + a] = CurrentPiece.idColor;
+        matrix[y + b][x + a] = CurrentPiece.idColor + 1;
       }
     }
   }
