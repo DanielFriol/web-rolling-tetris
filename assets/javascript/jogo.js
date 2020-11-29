@@ -521,6 +521,7 @@ function verifyLines() {
                 linesUpDown(y);
 
                 linesCompleted++;
+                linesComplete(linesCompleted);
             }
         }
     }
@@ -528,6 +529,10 @@ function verifyLines() {
     var newScore = (linesCompleted * 10) * linesCompleted;
     score += newScore;
     document.getElementById("score").innerHTML = `${score} Pontos`;
+}
+
+function linesComplete(linesCompleted){
+    document.getElementById("linhas").innerHTML = `${linesCompleted} Linhas`;
 }
 
 function linesUpDown(fromHeight) {
