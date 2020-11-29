@@ -5,7 +5,7 @@ var matrix;
 
 const pieces = [
     [
-        //   peça 1 - funcionando
+        //   peça 1 - bugado
         [9, 0, 9],
         [9, 9, 9],
     ],
@@ -529,6 +529,22 @@ function verifyLines() {
     var newScore = (linesCompleted * 10) * linesCompleted;
     score += newScore;
     document.getElementById("score").innerHTML = `${score} Pontos`;
+    
+    difficulty();
+}
+
+function difficulty() {
+    if (score < 300){
+        document.getElementById("dificuldade").innerHTML = "Fácil";
+    }
+
+    else if (score % 300 == 0 && score >= 300){
+        document.getElementById("dificuldade").innerHTML = "Médio";
+    }
+
+    else if (score % 300 == 0 && score >= 600){
+        document.getElementById("dificuldade").innerHTML = "Díficil";
+    }
 }
 
 function linesComplete(linesCompleted){
