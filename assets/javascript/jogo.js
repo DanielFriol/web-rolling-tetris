@@ -41,7 +41,7 @@ const pieces = [
   ],
 ];
 
-const colors = ["red", "blue", "green", "yellow", "grey", "purple", "brown"];
+const colors = ["red", "blue", "#40ff00", "yellow", "grey", "purple", "brown"];
 
 var CurrentPiece;
 const PS = 20;
@@ -51,12 +51,11 @@ var gameSpeed = 1000;
 let eventListener;
 var score = 0;
 var linesCompleted = 0;
-
+var canvasInverted = false;
 addEventListener("keydown", (x) => movePiece(x));
 
 function play() {
   playing = true;
-
   var size = document.getElementById("game-size").value;
   var sizeArr = size.split("x");
   width = parseInt(sizeArr[0]);
@@ -71,6 +70,7 @@ function play() {
 
   emptyMatrix();
 
+  difficulty();
   var canvasContext = canvas.getContext("2d");
 
   for (x = 0; x < height; x++) {
@@ -118,7 +118,10 @@ function play() {
       generateNewPiece();
     }
     console.log("y: ", CurrentPiece.y, " ly: ", lastY);
-    if (CurrentPiece.y == lastY) {
+    if (
+      (CurrentPiece.y == lastY && !canvasInverted) ||
+      (CurrentPiece.y == height - 1 && canvasInverted)
+    ) {
       // Game Over
       console.log("Stop");
       stop();
@@ -262,7 +265,7 @@ function stop() {
 
   score = 0;
   linesCompleted = 0;
-
+  gameSpeed = 1000;
   document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
   document.getElementById("dificuldade").innerHTML = "--";
   document.getElementById("score").innerHTML = "0 Pontos";
@@ -494,9 +497,11 @@ function verifyLines() {
 
   for (var y = 0; y < height && linesCompleted <= 4; y++) {
     var counter = 0;
+    var hasSpecialPiece = 0;
     for (var x = 0; x < width; x++) {
       // console.table(matrix)
       if (matrix[y][x] != 0) counter++;
+      if (matrix[y][x] == 3) hasSpecialPiece++;
       if (counter == width) {
         for (var auxX = x; auxX >= 0; auxX--) {
           canvasContext.fillStyle = "white";
@@ -516,16 +521,18 @@ function verifyLines() {
   var newScore = linesCompleted * 10 * linesCompleted;
   score += newScore;
   document.getElementById("score").innerHTML = `${score} Pontos`;
-
   difficulty();
 }
 
 function difficulty() {
   if (score < 300) {
     document.getElementById("dificuldade").innerHTML = "Fácil";
+    gameSpeed = 1000;
   } else if (score % 300 == 0 && score >= 300) {
     document.getElementById("dificuldade").innerHTML = "Médio";
+    gameSpeed = 750;
   } else if (score % 300 == 0 && score >= 600) {
+    gameSpeed = 375;
     document.getElementById("dificuldade").innerHTML = "Díficil";
   }
 }
@@ -538,21 +545,66 @@ function linesUpDown(fromHeight) {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
 
-  for (var y = fromHeight; y > 0; y--) {
-    var lineUp = y - 1;
-    for (var x = 0; x < width; x++) {
-      if (matrix[lineUp][x] != 0) {
-        canvasContext.fillStyle = colors[matrix[lineUp][x]];
-        canvasContext.fillRect(x * PS, y * PS, PS, PS);
-        canvasContext.fillStyle = "black";
-        canvasContext.strokeRect(x * PS, y * PS, PS, PS);
-        matrix[y][x] = matrix[lineUp][x];
+  if (!canvasInverted) {
+    for (var y = fromHeight; y > 0; y--) {
+      var lineUp = y - 1;
+      for (var x = 0; x < width; x++) {
+        if (matrix[lineUp][x] != 0) {
+          canvasContext.fillStyle = colors[matrix[lineUp][x]];
+          canvasContext.fillRect(x * PS, y * PS, PS, PS);
+          canvasContext.fillStyle = "black";
+          canvasContext.strokeRect(x * PS, y * PS, PS, PS);
+          matrix[y][x] = matrix[lineUp][x];
 
+          canvasContext.fillStyle = "white";
+          canvasContext.fillRect(x * PS, lineUp * PS, PS, PS);
+          canvasContext.fillStyle = "black";
+          canvasContext.strokeRect(x * PS, lineUp * PS, PS, PS);
+          matrix[lineUp][x] = 0;
+        }
+      }
+    }
+  } else {
+    for (var y = 0; y < fromHeight; y--) {
+      var lineUp = y + 1;
+      for (var x = 0; x < width; x++) {
+        if (matrix[lineUp][x] != 0) {
+          canvasContext.fillStyle = colors[matrix[lineUp][x]];
+          canvasContext.fillRect(x * PS, y * PS, PS, PS);
+          canvasContext.fillStyle = "black";
+          canvasContext.strokeRect(x * PS, y * PS, PS, PS);
+          matrix[y][x] = matrix[lineUp][x];
+
+          canvasContext.fillStyle = "white";
+          canvasContext.fillRect(x * PS, lineUp * PS, PS, PS);
+          canvasContext.fillStyle = "black";
+          canvasContext.strokeRect(x * PS, lineUp * PS, PS, PS);
+          matrix[lineUp][x] = 0;
+        }
+      }
+    }
+  }
+}
+
+function invertCanvas() {
+  console.table(matrix);
+  matrix = matrix.reverse();
+  console.table(matrix);
+  var canvas = document.getElementById("game");
+  var canvasContext = canvas.getContext("2d");
+
+  for (x = 0; x < height; x++) {
+    for (y = 0; y < width; y++) {
+      if (matrix[y][x] == 0) {
         canvasContext.fillStyle = "white";
-        canvasContext.fillRect(x * PS, lineUp * PS, PS, PS);
+        canvasContext.fillRect(y * PS, x * PS, PS, PS);
         canvasContext.fillStyle = "black";
-        canvasContext.strokeRect(x * PS, lineUp * PS, PS, PS);
-        matrix[lineUp][x] = 0;
+        canvasContext.strokeRect(y * PS, x * PS, PS, PS);
+      } else if (matrix[y][x]) {
+        canvasContext.fillStyle = colors[matrix[x][y]];
+        canvasContext.fillRect(y * PS, x * PS, PS, PS);
+        canvasContext.fillStyle = "black";
+        canvasContext.strokeRect(y * PS, x * PS, PS, PS);
       }
     }
   }
