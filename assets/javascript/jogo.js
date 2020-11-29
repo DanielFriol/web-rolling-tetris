@@ -51,6 +51,7 @@ var gameSpeed = 1000;
 let eventListener;
 var score = 0;
 var linesCompleted = 0;
+var cont = 2;
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -133,8 +134,12 @@ function play() {
 function generateNewPiece() {
   var pieceRandom = Math.floor(Math.random() * 7);
   
-  if (pieceRandom == 2) {
-  rolling();
+  if (pieceRandom == 2 && cont % 2 == 0) {
+    rolling(0);
+    cont++;
+  } else if (pieceRandom == 2 && cont % 2 == 1) {
+    rolling(1);
+    cont++;
   }
 
   var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
@@ -544,8 +549,12 @@ function linesComplete(linesCompleted) {
   document.getElementById("linhas").innerHTML = `${linesCompleted} Linhas`;
 }
 
-function rolling() {
-  document.getElementById("tetris").style.transform = "rotate(" + 180 + "deg)";
+function rolling(value) {
+  if (value == 0) {
+    document.getElementById("tetris").style.transform = "rotateZ(180deg)";
+  } else if (value == 1) {
+    document.getElementById("tetris").style.transform = "rotateZ(360deg)";
+  }
 }
 
 function linesUpDown(fromHeight) {
