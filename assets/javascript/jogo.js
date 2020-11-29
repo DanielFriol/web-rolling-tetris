@@ -50,6 +50,7 @@ var timeInterval;
 var gameSpeed = 1000;
 let eventListener;
 var score = 0;
+var linesCompleted = 0;
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -501,8 +502,6 @@ function rotate(piece) {
 function verifyLines() {
     var canvas = document.getElementById("game");
     var canvasContext = canvas.getContext("2d");
-
-    var linesCompleted = 0;
 
     for (var y = 0; y < height && linesCompleted <= 4; y++) {
         var counter = 0;
