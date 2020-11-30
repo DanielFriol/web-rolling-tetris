@@ -41,7 +41,7 @@ const pieces = [
   ],
 ];
 
-const colors = ["red", "blue", "green", "yellow", "grey", "purple", "brown"];
+const colors = ["green", "blue", "red", "yellow", "grey", "purple", "brown"];
 
 var CurrentPiece;
 const PS = 20;
