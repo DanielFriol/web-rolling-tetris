@@ -501,16 +501,18 @@ function rotate(piece) {
 function verifyLines() {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
-  var hasSpecialPiece = false;
+  // var hasSpecialPiece = false;
   var linesAux = 0;
   for (var y = 0; y < height && linesAux <= 4; y++) {
     var counter = 0;
     for (var x = 0; x < width; x++) {
       // console.table(matrix)
       if (matrix[y][x] != 0) counter++;
-      if (matrix[y][x] == 3) hasSpecialPiece = true;
+      // if (matrix[y][x] == 3) hasSpecialPiece = true;
       if (counter == width) {
-        if (hasSpecialPiece) {
+        var matAux = matrix[y].find(x => x == 3);
+        console.log(matAux);
+        if (matAux) {
           rolling();
           canvasIverted = !canvasIverted;
         }
@@ -575,7 +577,7 @@ function linesUpDown(fromHeight) {
     var lineUp = y - 1;
     for (var x = 0; x < width; x++) {
       if (matrix[lineUp][x] != 0) {
-        canvasContext.fillStyle = colors[matrix[lineUp][x] -1];
+        canvasContext.fillStyle = colors[matrix[lineUp][x] - 1];
         canvasContext.fillRect(x * PS, y * PS, PS, PS);
         canvasContext.fillStyle = "black";
         canvasContext.strokeRect(x * PS, y * PS, PS, PS);
