@@ -129,7 +129,7 @@ function play() {
     if (CurrentPiece.y == lastY) {
       // Game Over
       alert("Game Over");
-      console.log("Stop");
+      // console.log("Stop");
       stop();
     }
   }, gameSpeed);
@@ -199,6 +199,7 @@ function movePiece(event) {
         CurrentPiece.y
       );
     } else if (event.key == "ArrowDown") {
+      event.preventDefault();
       // console.log("down");
       if (
         !verifyBoundriesDownFoda(
@@ -227,6 +228,7 @@ function movePiece(event) {
         generateNewPiece();
       }
     } else if ((event.key = "ArrowUp")) {
+      event.preventDefault();
       // console.log("up");
       undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
       CurrentPiece.piece = rotate(CurrentPiece.piece);
@@ -256,7 +258,7 @@ function movePiece(event) {
 function verifyCollision(currentPiece, x, y) {
   if (
     currentPiece.y + currentPiece.piece.length > height - 1 ||
-    matrix[y][x] === 1
+    matrix[y][x] != 0
   ) {
     return true;
   }
@@ -511,7 +513,7 @@ function verifyLines() {
       // if (matrix[y][x] == 3) hasSpecialPiece = true;
       if (counter == width) {
         var matAux = matrix[y].find(x => x == 3);
-        console.log(matAux);
+        // console.log(matAux);
         if (matAux) {
           rolling();
           canvasIverted = !canvasIverted;
@@ -603,7 +605,7 @@ function gameLevelUp() {
     if (CurrentPiece.y == lastY) {
       // Game Over
       alert("Game Over");
-      console.log("Stop");
+      // console.log("Stop");
       stop();
     }
   }, gameSpeed);
