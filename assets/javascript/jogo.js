@@ -53,6 +53,7 @@ var score = 0;
 var linesCompleted = 0;
 var cont = 2;
 var canvasIverted = false;
+let lastY = 0;
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -91,7 +92,6 @@ function play() {
   }
 
   timer();
-  let lastY = 0;
   generateNewPiece();
   // console.log("x: ", CurrentPiece.x);
   pieceInterval = setInterval(() => {
@@ -542,19 +542,71 @@ function difficulty(score) {
   if (score < multiplo) {
     document.getElementById("dificuldade").innerHTML = "1";
     gameSpeed = 1000;
+    clearInterval(pieceInterval);
+    gameLevelUp();
   } else if (score >= multiplo && score < (multiplo * 2)) {
     document.getElementById("dificuldade").innerHTML = "2";
     gameSpeed = 800;
+    clearInterval(pieceInterval);
+    gameLevelUp();
   } else if (score >= (multiplo * 2) && score < (multiplo * 3)) {
     document.getElementById("dificuldade").innerHTML = "3";
     gameSpeed = 600;
+    clearInterval(pieceInterval);
+    gameLevelUp();
   } else if (score >= (multiplo * 3) && score < (multiplo * 4)) {
     document.getElementById("dificuldade").innerHTML = "4";
     gameSpeed = 400;
+    clearInterval(pieceInterval);
+    gameLevelUp();
   } else if (score >= (multiplo * 4) && score < (multiplo * 5)) {
     document.getElementById("dificuldade").innerHTML = "5";
     gameSpeed = 200;
+    clearInterval(pieceInterval);
+    gameLevelUp();
   }
+}
+
+function gameLevelUp() {
+  pieceInterval = setInterval(() => {
+    lastY = CurrentPiece.y;
+    if (
+      verifyBoundriesDownFoda(
+        CurrentPiece.piece,
+        CurrentPiece.x,
+        CurrentPiece.y + 1 // Antes estava medindo somente peças quadras, assim funciona de maneira humana
+      )
+    ) {
+      // console.log(CurrentPiece.y + CurrentPiece.piece.length);
+      //   console.log("tac");
+
+      undrawPiece(CurrentPiece.piece, CurrentPiece.x, CurrentPiece.y);
+      CurrentPiece.y++;
+      drawPiece(
+        CurrentPiece.piece,
+        CurrentPiece.color,
+        CurrentPiece.x,
+        CurrentPiece.y
+      );
+    }
+    if (
+      !verifyBoundriesDownFoda(
+        CurrentPiece.piece,
+        CurrentPiece.x,
+        CurrentPiece.y + 1
+      )
+    ) {
+      verifyLines();
+      generateNewPiece();
+    }
+    // console.log("y: ", CurrentPiece.y, " ly: ", lastY);
+    if (CurrentPiece.y == lastY) {
+      // Game Over
+      alert("Game Over");
+      console.log("Stop");
+      stop();
+    }
+  }, gameSpeed);
 }
 
 function linesComplete(linesCompleted) {
