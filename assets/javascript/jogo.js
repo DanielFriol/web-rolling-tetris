@@ -72,6 +72,8 @@ function play() {
   tetris.style.height = height * PS;
 
   emptyMatrix();
+  gameSpeed = 1000;
+  score = 0;
   if (canvasIverted) {
     rolling();
     canvasIverted = false;
@@ -123,7 +125,7 @@ function play() {
       verifyLines();
       generateNewPiece();
     }
-    console.log("y: ", CurrentPiece.y, " ly: ", lastY);
+    // console.log("y: ", CurrentPiece.y, " ly: ", lastY);
     if (CurrentPiece.y == lastY) {
       // Game Over
       alert("Game Over");
@@ -500,7 +502,8 @@ function verifyLines() {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
   var hasSpecialPiece = false;
-  for (var y = 0; y < height && linesCompleted <= 4; y++) {
+  var linesAux = 0;
+  for (var y = 0; y < height && linesAux <= 4; y++) {
     var counter = 0;
     for (var x = 0; x < width; x++) {
       // console.table(matrix)
@@ -519,14 +522,13 @@ function verifyLines() {
           matrix[y][auxX] = 0;
         }
         linesUpDown(y);
-
+        linesAux++;
         linesCompleted++;
         linesComplete(linesCompleted);
       }
     }
   }
-
-  var newScore = linesCompleted * 10 * linesCompleted;
+  var newScore = linesAux * 10 * linesAux;
   score += newScore;
   document.getElementById("score").innerHTML = `${score} Pontos`;
 
