@@ -18,7 +18,7 @@ https://www.youtube.com/watch?v=QJWP4z3FHhM&ab_channel=JoaoRonaldoCunha
 7. ~~Arrumar a peça 1 (vermelha)~~
 8. A̶d̶a̶p̶t̶a̶r̶ ̶a̶ ̶r̶o̶t̶a̶ç̶ã̶o̶,̶ ̶p̶o̶n̶t̶u̶a̶ç̶ã̶o̶ ̶e̶ ̶l̶i̶n̶h̶a̶s̶ ̶e̶l̶i̶m̶i̶n̶a̶d̶a̶s̶,̶ ̶d̶e̶ ̶a̶c̶o̶r̶d̶o̶ ̶c̶o̶m̶ ̶a̶ ̶r̶o̶t̶a̶ç̶ã̶o̶
 9. A̶r̶r̶u̶m̶a̶r̶ ̶a̶ ̶p̶o̶n̶t̶u̶a̶ç̶ã̶o̶ ̶d̶o̶s̶ ̶t̶a̶b̶u̶l̶e̶i̶r̶o̶s̶
-10. Fixar canvas para não haver rolagem de página
+10. ~~Fixar canvas para não haver rolagem de página~~
 
 
 
