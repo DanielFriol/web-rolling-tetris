@@ -52,6 +52,7 @@ let eventListener;
 var score = 0;
 var linesCompleted = 0;
 var cont = 2;
+var canvasIverted = false;
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -71,6 +72,10 @@ function play() {
   tetris.style.height = height * PS;
 
   emptyMatrix();
+  if (canvasIverted) {
+    rolling();
+    canvasIverted = false;
+  }
 
   var canvasContext = canvas.getContext("2d");
 
@@ -133,14 +138,7 @@ function play() {
 
 function generateNewPiece() {
   var pieceRandom = Math.floor(Math.random() * 7);
-  
-  if (pieceRandom == 2 && cont % 2 == 0) {
-    rolling(0);
-    cont++;
-  } else if (pieceRandom == 2 && cont % 2 == 1) {
-    rolling(1);
-    cont++;
-  }
+
 
   var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
 
@@ -501,13 +499,18 @@ function rotate(piece) {
 function verifyLines() {
   var canvas = document.getElementById("game");
   var canvasContext = canvas.getContext("2d");
-
+  var hasSpecialPiece = false;
   for (var y = 0; y < height && linesCompleted <= 4; y++) {
     var counter = 0;
     for (var x = 0; x < width; x++) {
       // console.table(matrix)
       if (matrix[y][x] != 0) counter++;
+      if (matrix[y][x] == 3) hasSpecialPiece = true;
       if (counter == width) {
+        if (hasSpecialPiece) {
+          rolling();
+          canvasIverted = !canvasIverted;
+        }
         for (var auxX = x; auxX >= 0; auxX--) {
           canvasContext.fillStyle = "white";
           canvasContext.fillRect(auxX * PS, y * PS, PS, PS);
@@ -534,14 +537,19 @@ function difficulty(score) {
   const multiplo = 300;
   if (score < multiplo) {
     document.getElementById("dificuldade").innerHTML = "1";
+    gameSpeed = 1000;
   } else if (score >= multiplo && score < (multiplo * 2)) {
     document.getElementById("dificuldade").innerHTML = "2";
+    gameSpeed = 800;
   } else if (score >= (multiplo * 2) && score < (multiplo * 3)) {
     document.getElementById("dificuldade").innerHTML = "3";
+    gameSpeed = 600;
   } else if (score >= (multiplo * 3) && score < (multiplo * 4)) {
     document.getElementById("dificuldade").innerHTML = "4";
+    gameSpeed = 400;
   } else if (score >= (multiplo * 4) && score < (multiplo * 5)) {
     document.getElementById("dificuldade").innerHTML = "5";
+    gameSpeed = 200;
   }
 }
 
@@ -549,10 +557,10 @@ function linesComplete(linesCompleted) {
   document.getElementById("linhas").innerHTML = `${linesCompleted} Linhas`;
 }
 
-function rolling(value) {
-  if (value == 0) {
+function rolling() {
+  if (!canvasIverted) {
     document.getElementById("tetris").style.transform = "rotateZ(180deg)";
-  } else if (value == 1) {
+  } else {
     document.getElementById("tetris").style.transform = "rotateZ(360deg)";
   }
 }
@@ -565,7 +573,7 @@ function linesUpDown(fromHeight) {
     var lineUp = y - 1;
     for (var x = 0; x < width; x++) {
       if (matrix[lineUp][x] != 0) {
-        canvasContext.fillStyle = colors[matrix[lineUp][x]];
+        canvasContext.fillStyle = colors[matrix[lineUp][x] -1];
         canvasContext.fillRect(x * PS, y * PS, PS, PS);
         canvasContext.fillStyle = "black";
         canvasContext.strokeRect(x * PS, y * PS, PS, PS);
