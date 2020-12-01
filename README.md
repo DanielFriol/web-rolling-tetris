@@ -7,6 +7,9 @@
 ## Tutorial de como usar o git no VS Code
 https://www.youtube.com/watch?v=QJWP4z3FHhM&ab_channel=JoaoRonaldoCunha
 
+## Link do Drive com os vídeos
+https://drive.google.com/drive/folders/1RTt5SY_kQifwToOISQaXZfyBFd7agehs?usp=sharing
+
 # O que precisa fazer
 
 1. Arrumar Bug ao Girar peça (tomar cuidado com as laterais do canvas)
