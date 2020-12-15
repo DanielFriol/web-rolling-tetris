@@ -6,7 +6,7 @@ create table User (
 	id bigint primary key auto_increment,
     name varchar(80) not null,
     cpf varchar(11) unique not null,
-    birthday datetime not null,
+    birthday varchar(10) not null,
     phone varchar(11) not null, 
     userName varchar(30) not null unique,
     email varchar(50) not null unique, 
