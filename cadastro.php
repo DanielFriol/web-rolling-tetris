@@ -13,6 +13,7 @@
 <body>
   <div>
     <?php
+    session_start();
     require_once('./server/dbconn.php')
     ?>
     <?php
@@ -24,8 +25,20 @@
       $email = $_POST['email'];
       $userName = $_POST['userName'];
       $password = $_POST['password'];
+      
+      if((empty($userName) || $userName == null) || (empty($password) || $password == null)){
+          echo"<script language='javascript' type='text/javascript'>
+                 alert('Há um campo de Usuário ou Login em branco !');
+               </script>";
+       }else{
+        
       $query = "INSERT into user (name, cpf,birthday, phone,userName, email, password) VALUES (?,?,?,?,?,?,?)";
       $result = $queryinrt->execute([$name, $cpf, $birthday, $phone, $userName, $email, md5($password)]);
+       
+          echo"<script language='javascript' type='text/javascript'>
+                alert('Cadastro realizado com sucesso!');window.location.href='index.php';
+               </script>";
+     }
     }
     ?>
   </div>
