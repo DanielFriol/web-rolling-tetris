@@ -2,6 +2,14 @@
 $server = "localhost";
 $name = "root";
 $pssword = "1234";
-$conn = new PDO("mysql:host=$server;dbname=webrollingtetrisdb", $name, $pssword);
-// set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db = "webrollingtetrisdb";
+
+try {
+    $conn = new PDO("mysql:host=$server;dbname=$db", $name, $pssword);
+     
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // set the PDO error mode to exception
+}
+
+catch (PDOException $e){
+    echo "Erro ao conectar: " . $e->getMessage();
+}
