@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="assets/css/cadastro.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script type="text/javascript" src="assets/javascript/cadastro.js"></script>
+
+    <title>Cadastro</title>
+  </head>
+
+  <body>
+    <div class="principal">
+      <h1>Cadastro</h1>
+      <div class="forms">
+        <form name="signupForm" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td><label>Nome Completo:</label></td>
+                <td><input name="name" type="text" class="ml-1" /></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label>Data de Nascimento:</label>
+                </td>
+                <td><input name="birthday" type="text" class="mt-2 ml-1" /></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label>CPF:</label>
+                </td>
+                <td><input name="cpf" type="text" class="mt-2 ml-1" /></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label>Telefone:</label>
+                </td>
+                <td><input name="phone" type="text" class="mt-2 ml-1" /></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label>Email:</label>
+                </td>
+                <td><input name="email" type="email" class="mt-2 ml-1" /></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label>Usuário:</label>
+                </td>
+                <td><input name="userName" type="text" class="mt-2 ml-1" /></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label>Senha:</label>
+                </td>
+                <td>
+                  <input name="password" type="password" class="mt-2 ml-1" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <button onclick="verifyUserInput()" name="btnSubmit" class="mt-2">
+          Cadastrar
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
