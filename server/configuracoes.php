@@ -1,4 +1,7 @@
 <?php
+ session_start();
+ include('dbconn.php');
+
 if (isset($_POST['btnAlterar'])) {
     $userName = $_POST['name'];
     $telephone = $_POST['telephone'];
@@ -8,7 +11,7 @@ if (isset($_POST['btnAlterar'])) {
     $query = "UPDATE user Set userName = '$userName', phone = '$telephone' , email = '$email', password = '$password' /*Colocar a condição do WHERE*/";
     $result = mysqli_query($conexao, $query);
 
-    $num_rows = mysqli_affected_rows($result); /*Verificar lógica depois*/
+    $num_rows = mysqli_affected_rows($conexao); /*Verificar lógica depois*/
 
     if ($num_rows == 1){
         echo"<script language='javascript' type='text/javascript'>
@@ -19,21 +22,25 @@ if (isset($_POST['btnAlterar'])) {
     }if (empty($userName) || $userName == null){
         echo"<script language='javascript' type='text/javascript'>
               alert ('Falta preencher o Nome de Usuário !');
+              window.location.href='../configuracoes.html;
              </script>";
     
     }if (empty($telephone) || $telephone == null){
         echo"<script language='javascript' type='text/javascript'>
               alert ('Falta preencher o Telefone !');
+              window.location.href='../configuracoes.html;
              </script>";
     
     }if (empty($email) || $email == null){
             echo"<script language='javascript' type='text/javascript'>
               alert ('Falta preencher o Email !');
+              window.location.href='../configuracoes.html;
             </script>";
     
     }if (empty($password) || $password == null){
             echo"<script language='javascript' type='text/javascript'>
               alert ('Falta preencher a Senha !');
+              window.location.href='../configuracoes.html;
            </script>";
     }
 }
