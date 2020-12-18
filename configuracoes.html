@@ -13,34 +13,34 @@
     <div class="principal">
       <h1>Modificar dados do usuário</h1>
       <div class="forms">
-        <form action="jogo.html">
+        <form action="server/configuracoes.php">
           <table>
             <tbody>
               <tr>
                 <td>
                   <label> Editar o Nome: </label>
                 </td>
-                <td><input type="text" class="ml-1" /></td>
+                <td><input name = "name" type="text" class="ml-1" /></td>
               </tr>
               <tr>
                 <td>
                   <label> Editar o Telefone: </label>
                 </td>
-                <td><input type="text" class="mt-2 ml-1" /></td>
+                <td><input name = "phone" type="text" class="mt-2 ml-1" /></td>
               </tr>
               <tr>
                 <td>
                   <label> Editar o Email: </label>
                 </td>
-                <td><input type="text" class="mt-2 ml-1" /></td>
+                <td><input name = "email" type="text" class="mt-2 ml-1" /></td>
               </tr>
               <tr>
                 <td><label> Editar a Senha: </label></td>
-                <td><input type="text" class="mt-2 ml-1" /></td>
+                <td><input name = "password" type="text" class="mt-2 ml-1" /></td>
               </tr>
             </tbody>
           </table>
-          <button type="submit" class="mt-2">Salvar</button>
+          <button name = "btnAlterar" type="submit" class="mt-2">Salvar</button>
         </form>
       </div>
     </div>
