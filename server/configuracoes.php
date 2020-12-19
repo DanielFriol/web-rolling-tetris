@@ -9,9 +9,9 @@ if (isset($_POST['btnAlterar'])) {
     $password = $_POST['password'];
 
     $query = "UPDATE user Set userName = '$userName', phone = '$telephone' , email = '$email', password = '$password' /*Colocar a condição do WHERE*/";
-    $result = mysqli_query($conexao, $query);
+    // $result = mysqli_query($conexao, $query);
 
-    $num_rows = mysqli_affected_rows($conexao); /*Verificar lógica depois*/
+    // $num_rows = mysqli_affected_rows($conexao); /*Verificar lógica depois*/
 
     if ($num_rows == 1){
         echo"<script language='javascript' type='text/javascript'>

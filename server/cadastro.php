@@ -1,6 +1,5 @@
 <?php
-require_once('./dbconn.php');
-// echo $_POST; 
+require_once('./dbconn.php'); 
 $name = $_POST['name'];
 $birthday = $_POST['birthday'];
 $cpf = $_POST['cpf'];

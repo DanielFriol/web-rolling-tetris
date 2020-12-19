@@ -4,12 +4,11 @@
 
     if (isset($_POST['btnEntrar'])) {
       $userName = $_POST['name'];
-      $password = $_POST['password'];
-
+      $password = sha1($_POST['password']);
       $query = "select * from user where userName ='$userName' and password = '$password'";
-      $result = mysqli_query($conexao, $query);
-        
-      $num_rows = mysqli_num_rows($result);
+      $queryinsrt = $conn->prepare($query);
+      $result = $queryinsrt->execute();
+      $num_rows = $queryinsrt->rowCount();
        
     if ($num_rows == 1){ 
         
@@ -42,4 +41,3 @@
                window.location.href='../index.html';
              </script>";
     }}
-?>
