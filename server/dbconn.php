@@ -4,13 +4,6 @@ $name = "root";
 $pssword = "1234";
 $db = "webrollingtetrisdb";
 
-// define('HOST', '127.0.0.1');
-// define('USUARIO', 'root');
-// define('SENHA', '1234');
-// define('DB', 'webrollingtetrisdb');
-
-// $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar');
-
 try {
     $conn = new PDO("mysql:host=$server;dbname=$db", $name, $pssword, array(PDO::MYSQL_ATTR_FOUND_ROWS => true));
 

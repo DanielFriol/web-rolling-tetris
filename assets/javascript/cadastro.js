@@ -55,10 +55,8 @@ function saveUserOnDB() {
   var url = "/web-rolling-tetris/server/cadastro.php";
   http.open("POST", url, true);
   console.log(http);
-  http.onreadystatechange = function () {};
   http.send(user);
   http.onload = function () {
-    console.log(http);
     if (http.status == 200) {
       alert("Usuário cadastrado!");
       window.location.href = "index.html";

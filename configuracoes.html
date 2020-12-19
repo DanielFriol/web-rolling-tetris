@@ -5,42 +5,46 @@
 
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/configuracoes.css" />
+    <script
+      type="text/javascript"
+      src="assets/javascript/configuracoes.js"
+    ></script>
 
     <title>Editar dados</title>
   </head>
 
-  <body>
+  <body onload="getUser()">
     <div class="principal">
       <h1>Modificar dados do usuário</h1>
       <div class="forms">
-        <form action="server/configuracoes.php" method = "POST">
+        <form action="server/configuracoes.php" method="POST">
           <table>
             <tbody>
               <tr>
                 <td>
                   <label> Editar o Nome: </label>
                 </td>
-                <td><input name = "name" type="text" class="ml-1" /></td>
+                <td><input id="name" name="name" type="text" class="ml-1" /></td>
               </tr>
               <tr>
                 <td>
                   <label> Editar o Telefone: </label>
                 </td>
-                <td><input name = "phone" type="text" class="mt-2 ml-1" /></td>
+                <td><input id="phone" name="phone" type="text" class="mt-2 ml-1" /></td>
               </tr>
               <tr>
                 <td>
                   <label> Editar o Email: </label>
                 </td>
-                <td><input name = "email" type="text" class="mt-2 ml-1" /></td>
+                <td><input id="email" name="email" type="text" class="mt-2 ml-1" /></td>
               </tr>
               <tr>
                 <td><label> Editar a Senha: </label></td>
-                <td><input name = "password" type="text" class="mt-2 ml-1" /></td>
+                <td><input id="password" name="password" type="password" class="mt-2 ml-1" /></td>
               </tr>
             </tbody>
           </table>
-          <button name = "btnAlterar" type="submit" class="mt-2">Salvar</button>
+          <button name="btnAlterar" type="submit" class="mt-2">Salvar</button>
         </form>
       </div>
     </div>

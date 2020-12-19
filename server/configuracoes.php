@@ -1,14 +1,25 @@
 <?php
- session_start();
  include('dbconn.php');
+ session_start();
 
 if (isset($_POST['btnAlterar'])) {
-    $userName = $_POST['name'];
-    $telephone = $_POST['telephone'];
+    $name = $_POST['name'];
+    $telephone = $_POST['phone'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $id = $_SESSION['id'];
 
-    $query = "UPDATE user Set userName = '$userName', phone = '$telephone' , email = '$email', password = '$password' /*Colocar a condição do WHERE*/";
+    if(!empty($password)){
+      $password = $_POST['password'];
+      $query = "UPDATE user Set name = '$name', phone = '$telephone' , email = '$email', password = '$password' where user.id = '$id'";
+    }
+    else
+    {
+      $query = "UPDATE user Set name = '$name', phone = '$telephone' , email = '$email' where user.id = '$id'";
+    }
+    
+    $queryinsrt = $conn->prepare($query);
+    $result = $queryinsrt->execute();
+    $num_rows = $queryinsrt->rowCount();
     // $result = mysqli_query($conexao, $query);
 
     // $num_rows = mysqli_affected_rows($conexao); /*Verificar lógica depois*/
@@ -44,4 +55,3 @@ if (isset($_POST['btnAlterar'])) {
            </script>";
     }
 }
-?>

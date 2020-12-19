@@ -6,15 +6,14 @@
       $userName = $_POST['name'];
       $password = sha1($_POST['password']);
       $query = "select * from user where userName ='$userName' and password = '$password'";
-      $queryinsrt = $conn->prepare($query);
-      $result = $queryinsrt->execute();
+      $queryinsrt = $conn->query("select * from user where userName ='$userName' and password = '$password'");
+      $user = $queryinsrt->fetch();
       $num_rows = $queryinsrt->rowCount();
        
-    if ($num_rows == 1){ 
-        
+    if ($num_rows == 1){
+        $_SESSION['id']=$user['id'];
        echo"<script language='javascript' type='text/javascript'>
-              alert('Login realizado com sucesso !');
-              window.location.href='../jogo.html';
+             window.location.href='../jogo.html';
             </script>";
 
     }else if ((empty($userName) || $userName == null) && (empty($password) || $password == null)){
