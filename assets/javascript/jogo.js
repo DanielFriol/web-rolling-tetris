@@ -54,6 +54,7 @@ var linesCompleted = 0;
 var cont = 2;
 var canvasIverted = false;
 let lastY = 0;
+var level = 1;
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -140,7 +141,6 @@ function play() {
 
 function generateNewPiece() {
   var pieceRandom = Math.floor(Math.random() * 7);
-
 
   var initPos = Math.floor(width / 2 - pieces[pieceRandom][0].length / 2);
 
@@ -265,6 +265,14 @@ function verifyCollision(currentPiece, x, y) {
 }
 
 function stop() {
+  var http = new XMLHttpRequest();
+  var url = "/web-rolling-tetris/server/saveGameResult.php";
+  var gameHistory = new FormData();
+  gameHistory.append("pointsAchieved", score);
+  gameHistory.append("levelAchieved", level);
+  gameHistory.append("durationTime", level);
+  http.open("POST", url, true);
+  http.send(gameHistory);
   playing = false;
 
   emptyMatrix();
@@ -274,6 +282,7 @@ function stop() {
 
   score = 0;
   linesCompleted = 0;
+  level = 1;
 
   document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
   document.getElementById("dificuldade").innerHTML = "--";
@@ -512,7 +521,7 @@ function verifyLines() {
       if (matrix[y][x] != 0) counter++;
       // if (matrix[y][x] == 3) hasSpecialPiece = true;
       if (counter == width) {
-        var matAux = matrix[y].find(x => x == 3);
+        var matAux = matrix[y].find((x) => x == 3);
         // console.log(matAux);
         if (matAux) {
           rolling();
@@ -543,26 +552,31 @@ function difficulty(score) {
   const multiplo = 300;
   if (score < multiplo) {
     document.getElementById("dificuldade").innerHTML = "1";
+    level = 1;
     gameSpeed = 1000;
     clearInterval(pieceInterval);
     gameLevelUp();
-  } else if (score >= multiplo && score < (multiplo * 2)) {
+  } else if (score >= multiplo && score < multiplo * 2) {
     document.getElementById("dificuldade").innerHTML = "2";
+    level = 2;
     gameSpeed = 800;
     clearInterval(pieceInterval);
     gameLevelUp();
-  } else if (score >= (multiplo * 2) && score < (multiplo * 3)) {
+  } else if (score >= multiplo * 2 && score < multiplo * 3) {
     document.getElementById("dificuldade").innerHTML = "3";
+    level = 3;
     gameSpeed = 600;
     clearInterval(pieceInterval);
     gameLevelUp();
-  } else if (score >= (multiplo * 3) && score < (multiplo * 4)) {
+  } else if (score >= multiplo * 3 && score < multiplo * 4) {
     document.getElementById("dificuldade").innerHTML = "4";
+    level = 4;
     gameSpeed = 400;
     clearInterval(pieceInterval);
     gameLevelUp();
-  } else if (score >= (multiplo * 4) && score < (multiplo * 5)) {
+  } else if (score >= multiplo * 4 && score < multiplo * 5) {
     document.getElementById("dificuldade").innerHTML = "5";
+    level = 5;
     gameSpeed = 200;
     clearInterval(pieceInterval);
     gameLevelUp();

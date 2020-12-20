@@ -2,8 +2,6 @@ function getUser() {
   var http = new XMLHttpRequest();
   var url = "/web-rolling-tetris/server/getUser.php";
   http.open("GET", url, true);
-  console.log(http);
-  http.onreadystatechange = function () {};
   http.send();
   http.onload = function () {
     if (http.status == 200) {
