@@ -55,6 +55,8 @@ var cont = 2;
 var canvasIverted = false;
 let lastY = 0;
 var level = 1;
+var gameTime = 0;
+var plays = [];
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -270,20 +272,20 @@ function stop() {
   var gameHistory = new FormData();
   gameHistory.append("pointsAchieved", score);
   gameHistory.append("levelAchieved", level);
-  gameHistory.append("durationTime", level);
+  gameHistory.append("durationTime", gameTime);
   http.open("POST", url, true);
   http.send(gameHistory);
   playing = false;
-
+  gameTime = 0;
   emptyMatrix();
   clearInterval(timeInterval);
   clearInterval(pieceInterval);
   removeEventListener("keydown", movePiece, false);
-
+  clearRows();
+  getUserLastPlays();
   score = 0;
   linesCompleted = 0;
   level = 1;
-
   document.getElementById("tempo").innerHTML = 0 + "m" + ":" + 0 + "s";
   document.getElementById("dificuldade").innerHTML = "--";
   document.getElementById("score").innerHTML = "0 Pontos";
@@ -316,6 +318,7 @@ function timer() {
     }
     document.getElementById("tempo").innerHTML =
       minutos + "m" + ":" + segundos + "s";
+    gameTime++;
   }, 1000);
 }
 
@@ -659,4 +662,41 @@ function linesUpDown(fromHeight) {
       }
     }
   }
+}
+function clearRows() {
+  var table = document.getElementById("playsTable");
+  for (var x = 1; x < table.rows.length; x++) {
+    table.deleteRow(x);
+  }
+}
+function getUserLastPlays() {
+  var http = new XMLHttpRequest();
+  var url = "/web-rolling-tetris/server/getUserLastPlays.php";
+  http.open("GET", url, true);
+  http.send();
+  http.onload = function () {
+    if (http.status == 200) {
+      plays = JSON.parse(http.response);
+      if (plays.length > 0) {
+        var table = document.getElementById("playsTable");
+        // clearRows();
+        for (var x = plays.length; x > 0; x--) {
+          var row = table.insertRow(1);
+          var nameCell = row.insertCell(0);
+          var pointsCell = row.insertCell(1);
+          var levelCell = row.insertCell(2);
+          var timeCell = row.insertCell(3);
+          nameCell.innerHTML = plays[x - 1].name;
+          pointsCell.innerHTML = plays[x - 1].pointsAchieved;
+          levelCell.innerHTML = plays[x - 1].levelAchieved;
+          timeCell.innerHTML = plays[x - 1].durationTime;
+        }
+      }
+    }
+    if (http.status == 500) {
+      // window.location.href = "index.html";
+      alert("Erro ao buscar partidas as ultimas partidas");
+      // window.location.href = "../jogo.html";
+    }
+  };
 }

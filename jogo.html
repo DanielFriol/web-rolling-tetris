@@ -13,7 +13,7 @@
   <title>O Jogo</title>
 </head>
 
-<body>
+<body onload="getUserLastPlays()">
   <div class="wrapper">
     <div class="parent">
       <div class="div1">
@@ -53,7 +53,7 @@
           <br />
 
           <div class="scrollrank">
-            <table class="ranking">
+            <table id="playsTable" class="ranking">
               <caption>
                 <b> Ranking: </b>
               </caption>
@@ -64,7 +64,7 @@
                 <th>Tempo de duração</th>
               </tr>
 
-              <tr>
+              <!-- <tr>
                 <td>Vitor Costa</td>
                 <td>16</td>
                 <td>Nível 1</td>
@@ -87,7 +87,7 @@
                 <td>1</td>
                 <td>Nível 1</td>
                 <td>00:00:45</td>
-              </tr>
+              </tr> -->
             </table>
           </div> <br />
 
