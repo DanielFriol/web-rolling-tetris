@@ -1,0 +1,9 @@
+1. Abrir o arquivo "database-creation.php" com algum editor php.
+2. Substituir as informações das variáveis: 
+	"$server" pelo endereço do servidor em que base está hospedada;
+	"$name" pelo username do usuário de acesso ao servidor da base;
+	"$password" pela senha do usuário de acesso ao servidor da base;
+	"$db" pelo nome da base de dados que irá utilizar.
+3. colocar o arquivo "database-creation.php" na pasta onde seu servidor PHP esta rodando. Caso estja utilizando o XAMPP coloque na pasta "xampp\htdocs"
+4. Rode o script acessando a rota em que o arquivo está hospedado no servidor. Ex: "enderecodoservidor/database-creation.php"
+5. Caso tudo funcione a mensagem "Tabelas criadas com sucesso!" aparecerá na tela. Caso algum erro aconteça no caminho ele será exibido na tela.
