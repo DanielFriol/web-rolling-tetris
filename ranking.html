@@ -6,18 +6,21 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/ranking.css" />
-
+    <script
+      type="text/javascript"
+      src="assets/javascript/ranking.js"
+    ></script>
     <title>Ranking</title>
   </head>
 
-  <body>
+  <body onload="getAllInfo()">
     <div class="principalranking">
       <div class="center">
         <div class="title">
           <h1>Ranking Global</h1>
         </div>
         <div class="ranking">
-          <table>
+          <table id="userBestPlay">
             <caption>
               Sua posição
             </caption>
@@ -28,14 +31,14 @@
               <th>Nível máximo:</th>
             </tr>
 
-            <tr>
+            <!-- <tr>
               <td>#16</td>
               <td>Daniel Friol</td>
               <td>5 Pontos</td>
               <td>1</td>
-            </tr>
+            </tr> -->
           </table>
-          <table>
+          <table id="bestPlaysTable">
             <caption>
               Top 10 Melhores Jogadores
             </caption>
@@ -46,7 +49,7 @@
               <th>Nível máximo:</th>
             </tr>
 
-            <tr>
+            <!-- <tr>
               <td>#1</td>
               <td>Guilherme Palermo</td>
               <td>103 Pontos</td>
@@ -114,7 +117,7 @@
               <td>Plinio Vilela</td>
               <td>26 Pontos</td>
               <td>1</td>
-            </tr>
+            </tr> -->
           </table>
         </div>
         <div class="menu">
