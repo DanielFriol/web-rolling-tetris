@@ -57,6 +57,7 @@ let lastY = 0;
 var level = 1;
 var gameTime = 0;
 var plays = [];
+var playerName = null;
 
 addEventListener("keydown", (x) => movePiece(x));
 
@@ -276,13 +277,21 @@ function stop() {
   http.open("POST", url, true);
   http.send(gameHistory);
   playing = false;
-  gameTime = 0;
   emptyMatrix();
   clearInterval(timeInterval);
   clearInterval(pieceInterval);
   removeEventListener("keydown", movePiece, false);
-  clearRows();
-  getUserLastPlays();
+  var table = document.getElementById("playsTable");
+  var row = table.insertRow(1);
+  var nameCell = row.insertCell(0);
+  var pointsCell = row.insertCell(1);
+  var levelCell = row.insertCell(2);
+  var timeCell = row.insertCell(3);
+  nameCell.innerHTML = playerName;
+  pointsCell.innerHTML = score;
+  levelCell.innerHTML = level;
+  timeCell.innerHTML = gameTime;
+  gameTime = 0;
   score = 0;
   linesCompleted = 0;
   level = 1;
@@ -680,6 +689,7 @@ function getUserLastPlays() {
       if (plays.length > 0) {
         var table = document.getElementById("playsTable");
         // clearRows();
+        playerName = plays[0].name;
         for (var x = plays.length; x > 0; x--) {
           var row = table.insertRow(1);
           var nameCell = row.insertCell(0);
