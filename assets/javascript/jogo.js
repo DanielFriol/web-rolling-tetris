@@ -699,7 +699,7 @@ function getUserLastPlays() {
           nameCell.innerHTML = plays[x - 1].name;
           pointsCell.innerHTML = plays[x - 1].pointsAchieved;
           levelCell.innerHTML = plays[x - 1].levelAchieved;
-          timeCell.innerHTML = plays[x - 1].durationTime;
+          timeCell.innerHTML =  secondsConverted(plays[x - 1].durationTime);
         }
       }
     }
@@ -709,4 +709,19 @@ function getUserLastPlays() {
       // window.location.href = "../jogo.html";
     }
   };
+}
+
+function secondsConverted(seg) {
+  var h = Math.floor(seg / (60 * 60));
+  var r = seg % (60 * 60);
+  var m = Math.floor(seg / 60);
+  r %= 60;
+  var s = Math.ceil(r);
+  if (m) {
+    return `${m}m:${s}s`;
+  } else if (h) {
+    return `${h}h:${hourConverted.m}m:${s}s`;
+  } else {
+    return `${s}s`;
+  }
 }
