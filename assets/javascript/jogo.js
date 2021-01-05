@@ -290,7 +290,7 @@ function stop() {
   nameCell.innerHTML = playerName;
   pointsCell.innerHTML = score;
   levelCell.innerHTML = level;
-  timeCell.innerHTML = gameTime;
+  timeCell.innerHTML = secondsConverted(gameTime);
   gameTime = 0;
   score = 0;
   linesCompleted = 0;
@@ -678,6 +678,7 @@ function clearRows() {
     table.deleteRow(x);
   }
 }
+
 function getUserLastPlays() {
   var http = new XMLHttpRequest();
   var url = "/web-rolling-tetris/server/getUserLastPlays.php";
@@ -699,11 +700,12 @@ function getUserLastPlays() {
           nameCell.innerHTML = plays[x - 1].name;
           pointsCell.innerHTML = plays[x - 1].pointsAchieved;
           levelCell.innerHTML = plays[x - 1].levelAchieved;
-          timeCell.innerHTML =  secondsConverted(plays[x - 1].durationTime);
+          timeCell.innerHTML = secondsConverted(plays[x - 1].durationTime);
         }
       }
-    }
-    if (http.status == 500) {
+    } else if (http.status == 400) {
+      window.location.href = "./index.html";
+    } else if (http.status == 500) {
       // window.location.href = "index.html";
       alert("Erro ao buscar partidas as ultimas partidas");
       // window.location.href = "../jogo.html";

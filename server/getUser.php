@@ -1,7 +1,11 @@
 <?php
 include('dbconn.php');
 session_start();
+if (!$_SESSION['id']) {
+    header("HTTP/1.1 400 UNAUTHORIZED");
+}
 
+  
 if (isset($_GET)) {
     $id = $_SESSION['id'];
     $queryinsrt = $conn->query("select * from user where user.id = '$id'");

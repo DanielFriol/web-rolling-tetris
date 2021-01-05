@@ -1,6 +1,11 @@
 <?php
 require_once('./dbconn.php');
 session_start();
+if (!$_SESSION['id']) {
+    header("HTTP/1.1 400 UNAUTHORIZED");
+}
+
+
 
 if (isset($_POST)) {
     $pointsAchieved = $_POST['pointsAchieved'];
