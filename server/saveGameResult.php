@@ -2,7 +2,7 @@
 require_once('./dbconn.php');
 session_start();
 if (!$_SESSION['id']) {
-    header("HTTP/1.1 400 UNAUTHORIZED");
+    header("HTTP/1.1 401 UNAUTHORIZED");
 }
 
 

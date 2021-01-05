@@ -583,7 +583,7 @@ function difficulty(score) {
   } else if (score >= multiplo * 3 && score < multiplo * 4) {
     document.getElementById("dificuldade").innerHTML = "4";
     level = 4;
-    gameSpeed = 400;
+    gameSpeed = 401;
     clearInterval(pieceInterval);
     gameLevelUp();
   } else if (score >= multiplo * 4 && score < multiplo * 5) {
@@ -703,7 +703,7 @@ function getUserLastPlays() {
           timeCell.innerHTML = secondsConverted(plays[x - 1].durationTime);
         }
       }
-    } else if (http.status == 400) {
+    } else if (http.status == 401) {
       window.location.href = "./index.html";
     } else if (http.status == 500) {
       // window.location.href = "index.html";

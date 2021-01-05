@@ -13,7 +13,7 @@ function getUser() {
       window.location.href = "index.html";
       alert("Erro ao buscar usuário, tente novamente!");
       window.location.href = "../jogo.html";
-    } else if (http.status == 400) {
+    } else if (http.status == 401) {
       window.location.href = "./index.html";
     }
   };

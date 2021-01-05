@@ -26,7 +26,7 @@ function getUserWorldRanking() {
         points.innerHTML = userBestPlay.pointsAchieved;
         level.innerHTML = userBestPlay.levelAchieved;
       }
-    } else if (http.status == 400) {
+    } else if (http.status == 401) {
       window.location.href = "./index.html";
     }
   };
@@ -57,7 +57,7 @@ function getWorldRanking() {
           level.innerHTML = bestPlays[x].levelAchieved;
         }
       }
-    } else if (http.status == 400) {
+    } else if (http.status == 401) {
       window.location.href = "./index.html";
     }
   };
