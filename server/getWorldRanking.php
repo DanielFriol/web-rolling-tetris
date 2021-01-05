@@ -8,7 +8,6 @@ if (!$_SESSION['id']) {
 
   
 if (isset($_GET)) {
-    $querySet = $conn->query("SET @row_number = 0;");
     $queryinsrt = $conn->query(
         "SELECT g.id, g.userId, g.levelAchieved, g.pointsAchieved, g.durationTime, us.userName FROM $db.gamehistory as g 
         INNER JOIN $db.user as us on us.id = g.userId
