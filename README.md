@@ -12,9 +12,9 @@ https://drive.google.com/drive/folders/1RTt5SY_kQifwToOISQaXZfyBFd7agehs?usp=sha
 
 # O que precisa fazer
 
-1. Arrumar Bug da 5 ultimas partidas
-2. Fazer o ranking global
-3. Arrumar o session do php pra não permitir acessar as paginas sem estar logado, atualmente não esta fazendo isso.
+~~1. Arrumar Bug da 5 ultimas partidas~~
+~~2. Fazer o ranking global~~
+~~3. Arrumar o session do php pra não permitir acessar as paginas sem estar logado, atualmente não esta fazendo isso.~~
 
 ~~4. Fazer o script PHP para gerar a base e instruções pra usa-lo.~~
 5. Gravar o vídeo.
